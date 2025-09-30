@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+body{
+    font-family: blinker;
+}
+h1{
+    margin: 8px;
+}
+p{
+    font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    }
+
+@font-face {
+    font-family: blinker;
+    src: url("/assets/fonts/Blinker/Blinker-Regular.ttf");
+    font-display: fallback;
+}
