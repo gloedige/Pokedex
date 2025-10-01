@@ -17,7 +17,7 @@ header{
 }
 .container_header{
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1440px;
     height: 80px;
     padding: 8px;
     background-color: #313131;
@@ -39,8 +39,33 @@ footer{
     align-items: center;
     gap: 32px;
 }
-.logo_img{
+.container_input_field{
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+    width: 400px;
+    gap: 16px
+}
+.submit_btn{
+    width: 60px;
+    background-color: #EE6B2F;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.input_field{
+    flex: 1;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+.pokeball_icon{
     height: 64px;
+    margin: 0px 16px;
+}
+.container_icon{
+    display: flex;
+    align-items: center;
 }
 .main_img_container{
     height: 200px;
