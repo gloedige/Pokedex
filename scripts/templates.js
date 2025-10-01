@@ -4,12 +4,12 @@ function renderSinglePokemon(singlePokemon){
     return  `
             <li class="animating">
                 <a href="">
-                    <img src = "${imgURL}${singlePokemon.id}.svg" alt="Pokemon image">
+                    <img src = "${imgURL}${singlePokemon.id}.svg" alt="Pokemon image" class="poke_img">
                 </a>
                 <div class="pokemon_info">
                     <p class="id">
                         <span class="number_prefix">Nr.&nbsp;</span>
-                        ${singlePokemon.id}
+                        000${singlePokemon.id}
                     </p>
                     <h5>${(singlePokemon.name).toUpperCase()}</h5>
                     <div class="abilities">
