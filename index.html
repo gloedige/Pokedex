@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="icon" href="./assets/icons/pokeball.png">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    
+</head>
+<body>
+    <div class="wrapper">
+        
+        <header>
+            <div class="container_header">
+                <div class="container_icon">
+                    <img src="./assets/icons/pokeball.png" alt="pokeball icon" class="pokeball_icon">
+                    <h1>Pokédex</h1>
+                </div>
+                <form class="container_input_field" id="formSearchPokemon">
+                    <input type="text" value="Search your Pokemon" class="input_field" id="input_field" required onfocus="this.value=''">
+                    <button type="submit" class="submit_btn">
+                        <img src="./assets/icons/search_40dp_FFFFFF.svg" alt="find button">
+                    </button>
+                </form>
+            </header>
+        </div>
+    </div>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/templates.js"></script>
+</body>
+</html>
