@@ -44,18 +44,22 @@ header{
 }
 footer{
     height: 80px;
-    background-color: #1F1F1F;
+    background-color: #313131;
 }
 .container_footer{
     max-width: 1440px;
     height: 80px;
     margin: 0 auto;
     padding: 0px 0px;
-    background-color: #1F1F1F;
+    color: white;
+    background-color: #313131;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 32px;
+}
+.pokeball_icon_footer{
+    height: 32px;
 }
 .container_input_field{
     display: flex;
