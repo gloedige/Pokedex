@@ -1,0 +1,24 @@
+let imgURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
+
+function renderSinglePokemon(singlePokemon){
+    return  `
+            <li class="animating">
+                <a href="">
+                    <img src = "${imgURL}${singlePokemon.id}.svg" alt="Pokemon image">
+                </a>
+                <div class="pokemon_info">
+                    <p class="id">
+                        <span class="number_prefix">Nr.&nbsp;</span>
+                        ${singlePokemon.id}
+                    </p>
+                    <h5>${(singlePokemon.name).toUpperCase()}</h5>
+                    <div class="abilities">
+                        <span class="pill background_color_xxx">${singlePokemon.abilities[0].ability.name}</span>
+                    </div>
+                    <div class="abilities">
+                        <span class="pill background_color_xxx">${singlePokemon.abilities[1].ability.name}</span>
+                    </div>
+                </div>
+            </li>
+            `
+}
