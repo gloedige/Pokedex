@@ -7,7 +7,10 @@
     scale: none;
     transform: translate(0px, 0px);
 }
-
+.poke_img{
+    background-color: #F2F2F2;
+    border-radius: 5px;
+}
 .pokedex_results{
     position: relative;
     height: auto;
@@ -48,6 +51,17 @@
     font-size: 11px;
     text-align: center
 }
+.pokedex_results .results li .pokemon_info h5 {
+    font-family: "Flexo-Demi",arial,sans-serif;
+    color: #313131;
+    text-transform: none;
+    font-size: 145%;
+    margin-bottom: 5px
+}
+
+
+
+
 
 
 .background-color-bug {
