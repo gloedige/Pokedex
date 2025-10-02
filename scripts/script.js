@@ -11,7 +11,7 @@ function initFormFieldEventListener(){
 }
 
 function initDOMContentEventListener(){
-    let path = "/1";
+    let path = "/76";
     // initDialog();   
     initFormFieldEventListener();
     fetchSinglePokemon(path);
@@ -27,6 +27,16 @@ async function fetchSinglePokemon(path="") {
 function renderAllPokemons(singlePokemon){
     let allPokemonsRef = document.getElementById('container_pokemons');
     allPokemonsRef.innerHTML = renderSinglePokemon(singlePokemon);
+    setAllElementsOfType(singlePokemon);
+}
+
+function setAllElementsOfType(singlePokemon){
+    let singlePokemonRef = document.getElementById('types');
+    let typeKeyArrays = Object.keys(singlePokemon.types);    
+    for (let index = 0; index < typeKeyArrays.length; index++) {
+        let type = singlePokemon.types[index].type;
+        singlePokemonRef.innerHTML += renderTypes(type);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
