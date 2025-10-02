@@ -13,10 +13,10 @@ function renderSinglePokemon(singlePokemon){
                     </p>
                     <h5>${(singlePokemon.name).toUpperCase()}</h5>
                     <div class="abilities">
-                        <span class="pill background_color_xxx">${singlePokemon.abilities[0].ability.name}</span>
-                    </div>
+                        <span class="pill background_color_${singlePokemon.types[0].type.name}">${singlePokemon.types[0].type.name}</span>
+                        </div>
                     <div class="abilities">
-                        <span class="pill background_color_xxx">${singlePokemon.abilities[1].ability.name}</span>
+                        <span class="pill background_color_${singlePokemon.types[1].type.name}">${singlePokemon.types[1].type.name}</span>
                     </div>
                 </div>
             </li>
