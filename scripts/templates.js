@@ -6,19 +6,21 @@ function renderSinglePokemon(singlePokemon){
                 <a href="">
                     <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" class="poke_img">
                 </a>
-                <div class="pokemon_info">
+                <div class="pokemon_info" id="types">
                     <p class="id">
                         <span class="number_prefix">Nr.&nbsp;</span>
                         ${String(singlePokemon.id).padStart(4,'0')}
                     </p>
                     <h5>${(singlePokemon.name).toUpperCase()}</h5>
-                    <div class="abilities">
-                        <span class="pill background_color_${singlePokemon.types[0].type.name}">${singlePokemon.types[0].type.name}</span>
-                        </div>
-                    <div class="abilities">
-                        <span class="pill background_color_${singlePokemon.types[1].type.name}">${singlePokemon.types[1].type.name}</span>
-                    </div>
                 </div>
             </li>
+            `
+}
+
+function renderTypes(type){
+    return  `
+            <div class="abilities">
+                <span class="pill background_color_${type.name}">${type.name}</span>
+            </div>
             `
 }
