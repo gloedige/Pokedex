@@ -2,10 +2,32 @@
     opacity: 1;
     top: 0px;
     left: 0px;
-    translate: none;
-    rotate: none;
-    scale: none;
-    transform: translate(0px, 0px);
+}
+.animating:hover{
+    animation-name: pulse;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1; 
+}
+@keyframes pulse {
+    0% {
+        transform: translateY(0); /* Startposition */
+    }
+    50% {
+        transform: translateY(-5px); /* Hälfte der Zeit: 5px nach oben */
+    }
+    100% {
+        transform: translateY(0); /* Ende: Zurück zur Ausgangsposition */
+    }
+}
+.pokedex_results .results li{
+    display: block;
+    float: left;
+    position: relative;
+    margin: 1% 50px;
+    width: 23%;
+    /* transition: all 0.2s ease-in-out; */
+    /* translate: none; */
 }
 .pokedex_results .results li a {
     float: left;
@@ -33,13 +55,6 @@
     margin-right: -100%;
     width: 85%;
     margin-left: 7%;
-}
-.pokedex_results .results li{
-    display: block;
-    float: left;
-    position: relative;
-    margin: 1% 50px;
-    width: 23%
 }
 .pokedex_results .results li .pokemon_info {
     clear: both;
