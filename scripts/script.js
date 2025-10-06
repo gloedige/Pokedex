@@ -15,7 +15,7 @@ function initDOMContentEventListener(){
     // initDialog();   
     initFormFieldEventListener();
     fetchSinglePokemon(path);
-    // hideLoadingSpinner();
+    hideLoadingSpinner();
 }
 
 async function fetchSinglePokemon(path="") {
