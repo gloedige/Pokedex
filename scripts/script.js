@@ -15,6 +15,7 @@ function initDOMContentEventListener(){
     // initDialog();   
     initFormFieldEventListener();
     fetchSinglePokemon(path);
+    // hideLoadingSpinner();
 }
 
 async function fetchSinglePokemon(path="") {
@@ -45,7 +46,14 @@ function setAllElementsOfType(singlePokemon){
 function setBackgroundColorOfType(type){
     let imgRef = document.getElementById('poke_img');
     imgRef.classList.add("background_color_"+type.name);
+}
 
+function showLoadingSpinner(){
+    document.getElementById('overlay').classList.toggle('d_none');
+}
+
+function hideLoadingSpinner(){
+    document.getElementById('overlay').classList.toggle('d_none');
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
