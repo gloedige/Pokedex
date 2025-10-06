@@ -36,7 +36,16 @@ function setAllElementsOfType(singlePokemon){
     for (let index = 0; index < typeKeyArrays.length; index++) {
         let type = singlePokemon.types[index].type;
         singlePokemonRef.innerHTML += renderTypes(type);
+        if (index == 0){
+            setBackgroundColorOfType(type);
+        }
     }
+}
+
+function setBackgroundColorOfType(type){
+    let imgRef = document.getElementById('poke_img');
+    imgRef.classList.add("background_color_"+type.name);
+
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
