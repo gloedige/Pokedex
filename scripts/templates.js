@@ -4,7 +4,7 @@ function renderSinglePokemon(singlePokemon){
     return  `
             <li class="animating">
                 <a href="">
-                    <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" class="poke_img">
+                    <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img">
                 </a>
                 <div class="pokemon_info" id="types">
                     <p class="id">
