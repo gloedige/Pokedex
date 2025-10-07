@@ -1,5 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
+let limit = 0;
 
 function initFormFieldEventListener(){
     let formSearchPokemon = document.getElementById('formSearchPokemon');
@@ -12,6 +13,7 @@ function initFormFieldEventListener(){
 }
 
 async function initDOMContentEventListener(){
+    limit = 20;
     // let path = "/76";
     // initDialog();   
     initFormFieldEventListener();
@@ -35,7 +37,7 @@ async function fetchSingleItem(itemObject) {
 }
 
 async function getFirstTwentyItems(){
-    let path = "?offset="+OFFSET+"0&limit=20";
+    let path = "?offset="+OFFSET+"0&limit="+limit;
     let twentyFirstItems = await fetchAllItems(path);
     renderAllPokemons(twentyFirstItems);
 }
@@ -49,8 +51,6 @@ function renderAllPokemons(fetchedPokemons){
         
         allPokemonsRef.innerHTML += renderSinglePokemon(singlePokemon)
         setAllElementsOfType(singlePokemon);
-
-
     });
 }
 
@@ -66,13 +66,6 @@ function setAllElementsOfType(singlePokemon){
     }
 }
 
-function getArrayOfFetchedItems(arrayOfObjects){
-    let arrayOfKeys = Object.keys(arrayOfObjects);
-    console.log(arrayOfKeys);
-    
-    return arrayOfKeys
-}
-
 function setBackgroundColorOfType(type, id){
     let imgRef = document.getElementById('poke_img_'+id);
     imgRef.classList.add("background_color_"+type.name);
@@ -84,6 +77,11 @@ function showLoadingSpinner(){
 
 function hideLoadingSpinner(){
     document.getElementById('overlay').classList.add('d_none');
+}
+
+async function loadmore(){
+    limit = limit + 20;
+    await getFirstTwentyItems();
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
