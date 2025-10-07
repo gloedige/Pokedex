@@ -48,20 +48,20 @@ function renderAllPokemons(fetchedPokemons){
         console.log(singlePokemon);
         
         allPokemonsRef.innerHTML += renderSinglePokemon(singlePokemon)
-        // setAllElementsOfType(singlePokemon);
+        setAllElementsOfType(singlePokemon);
 
 
     });
 }
 
 function setAllElementsOfType(singlePokemon){
-    let singlePokemonRef = document.getElementById('types');
+    let singlePokemonRef = document.getElementById(singlePokemon.id);
     let typeKeyArrays = Object.keys(singlePokemon.types);    
     for (let index = 0; index < typeKeyArrays.length; index++) {
         let type = singlePokemon.types[index].type;
         singlePokemonRef.innerHTML += renderTypes(type);
         if (index == 0){
-            setBackgroundColorOfType(type);
+            setBackgroundColorOfType(type, singlePokemon.id);
         }
     }
 }
@@ -73,8 +73,8 @@ function getArrayOfFetchedItems(arrayOfObjects){
     return arrayOfKeys
 }
 
-function setBackgroundColorOfType(type){
-    let imgRef = document.getElementById('poke_img');
+function setBackgroundColorOfType(type, id){
+    let imgRef = document.getElementById('poke_img_'+id);
     imgRef.classList.add("background_color_"+type.name);
 }
 

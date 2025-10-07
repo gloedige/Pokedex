@@ -4,9 +4,9 @@ function renderSinglePokemon(singlePokemon){
     return  `
             <li class="animating">
                 <a href="">
-                    <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img">
+                    <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img_${singlePokemon.id}">
                 </a>
-                <div class="pokemon_info" id="types">
+                <div class="pokemon_info" id="${singlePokemon.id}">
                     <p class="id">
                         <span class="number_prefix">Nr.&nbsp;</span>
                         ${String(singlePokemon.id).padStart(4,'0')}
