@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <title>Pokédex</title>
     <link rel="icon" href="./assets/icons/pokeball.png">
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/poke_card.css">
-    
+        
 </head>
 <body>
     <div class="wrapper">    
@@ -30,10 +30,11 @@
             <div id="overlay">
                <img src="./assets/icons/pokeball.png" class="loader">
            </div>
-            <div class="main_wrapper pokedex_results" id="pokedex_results">
-                <ul id="container_pokemons" class="results">
-
-                    </ul>
+            <div class="main_wrapper pokedex_results">
+                <ul id="container_pokemons" class="results"></ul>
+                <div class="load_more_container">
+                    <button class="load_more_btn" onclick="loadmore()">next 20</button>
+                </div>
             </div>
         </main>
         <footer>
