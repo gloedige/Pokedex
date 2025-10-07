@@ -1,5 +1,13 @@
+body{
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
 main{
     background-image: url("../assets/img/body_bg.png");
+    flex: 1;
+    overflow-y: auto;
 }
 .main_wrapper{
     width: 100%;
@@ -30,6 +38,7 @@ header{
     height: 80px;
     position: sticky;
     top: 0px;
+    z-index: 1000;
 }
 .container_header{
     margin: 0 auto;

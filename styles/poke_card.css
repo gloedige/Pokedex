@@ -24,8 +24,8 @@
     display: block;
     float: left;
     position: relative;
-    margin: 1% 50px;
-    width: 23%;
+    margin: 1% 2%;
+    width: 20%;
     /* transition: all 0.2s ease-in-out; */
     /* translate: none; */
 }
@@ -53,8 +53,8 @@
 .pokedex_results .results{
     float: left;
     margin-right: -100%;
-    width: 85%;
-    margin-left: 7%;
+    width: 100%;
+    /* margin-left: 7%; */
 }
 .pokedex_results .results li .pokemon_info {
     clear: both;
