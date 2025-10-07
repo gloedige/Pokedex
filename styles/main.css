@@ -164,6 +164,20 @@ dialog::backdrop{
 .d_none{
     display: none !important;
 }
+.load_more_btn{
+    margin: 16px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #313131;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 5px 5px 15px black;
+    cursor: pointer;
+}
+.load_more_container{
+    display: flex;
+    justify-content: center;
+}
 
 @media(max-width: 1050px){
    
