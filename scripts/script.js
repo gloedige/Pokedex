@@ -7,7 +7,6 @@ function initFormFieldEventListener(){
     if (formSearchPokemon){
         formSearchPokemon.addEventListener('submit', function(event){
             handleFormSubmit(event);
-            // schiebe die Funktion "findPokemonByName()" nach handleFormSubmit
         })
     };
 }
@@ -20,7 +19,12 @@ function handleFormSubmit(event){
     }
     if (submittedForm.classList.contains('container_input_field')){
         let inputText = document.getElementById('input_field').value;
+        findPokemonByName(inputText);
     }
+}
+
+function findPokemonByName(inputText){
+
 }
 
 async function initDOMContentEventListener(){
@@ -46,6 +50,7 @@ async function fetchSingleItem(itemObject) {
 async function getItemsFromAPI(){
     let path = "?offset="+OFFSET+"0&limit="+limit;
     let arrayOfItemObjects = await fetchAllItems(path);
+    storeArrayOfItemObjectsToLocalStorage(arrayOfItemObjects);
     await renderAllPokemons(arrayOfItemObjects);
 }
 
@@ -93,6 +98,14 @@ async function loadmore(){
     showLoadingSpinner();
     await getItemsFromAPI();
     hideLoadingSpinner();
+}
+
+function storeArrayOfItemObjectsToLocalStorage(arrayOfItemObjects){
+    localStorage.setItem('ArrayOfItems', JSON.stringify(arrayOfItemObjects))
+}
+
+function getArrayOfItemObjectsFromLocalStorage(){
+    return JSON.parse(localStorage.getItem('ArrayOfItems'))
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
