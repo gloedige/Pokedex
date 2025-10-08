@@ -35,19 +35,17 @@ async function fetchSingleItem(itemObject) {
 async function getItemsFromAPI(){
     let path = "?offset="+OFFSET+"0&limit="+limit;
     let arrayOfItemObjects = await fetchAllItems(path);
-    console.log(arrayOfItemObjects);
-    
-    renderAllPokemons(arrayOfItemObjects);
+    await renderAllPokemons(arrayOfItemObjects);
 }
 
-function renderAllPokemons(arrayOffetchedPokemonsObjects){
+async function renderAllPokemons(arrayOffetchedPokemonsObjects){
     let allPokemonsRef = document.getElementById('container_pokemons');
     clearContainerPokemons(allPokemonsRef);
-    arrayOffetchedPokemonsObjects.forEach(async(singlePokemonObject) => {
-        let singlePokemon = await fetchSingleItem(singlePokemonObject);
+    for (let itemObject of arrayOffetchedPokemonsObjects){
+        let singlePokemon = await fetchSingleItem(itemObject);
         allPokemonsRef.innerHTML += renderSinglePokemon(singlePokemon)
         setAllElementsOfType(singlePokemon);
-    });
+    }
 }
 
 function clearContainerPokemons(allPokemonsRef){
@@ -81,7 +79,9 @@ function hideLoadingSpinner(){
 
 async function loadmore(){
     limit = limit + 20;
+    showLoadingSpinner();
     await getItemsFromAPI();
+    hideLoadingSpinner();
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
