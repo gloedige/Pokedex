@@ -12,6 +12,17 @@ function initFormFieldEventListener(){
     };
 }
 
+function handleFormSubmit(event){
+    event.preventDefault();
+    let submittedForm = event.target;
+    if (!submittedForm){
+        return;
+    }
+    if (submittedForm.classList.contains('container_input_field')){
+        let inputText = document.getElementById('input_field').value;
+    }
+}
+
 async function initDOMContentEventListener(){
     initFormFieldEventListener();
     await getItemsFromAPI();
