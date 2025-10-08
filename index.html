@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,21 @@
                     <h1>Pokédex</h1>
                 </div>
                 <form class="container_input_field" id="formSearchPokemon">
-                    <input type="text" value="Search your Pokemon" class="input_field" id="input_field" required onfocus="this.value=''">
+                    <input 
+                        type="text" 
+                        value="Search your Pokemon" 
+                        class="input_field" 
+                        id="input_field" 
+                        onfocus="this.value=''"
+                        minlength="3"
+                        maxlength="20"
+                        required>
+
                     <button type="submit" class="submit_btn">
                         <img src="./assets/icons/search_40dp_FFFFFF.svg" alt="find button">
+                    </button>
+                    <button class="submit_btn" onclick="reloadLastView()">
+                        <img src="./assets/icons/refresh_40dp_FFFFFF.svg" alt="find button">
                     </button>
                 </form>
             </div>
