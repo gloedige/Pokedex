@@ -1,6 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
 let limit = 20;
+let  arrayOfItems = [];
 
 function initFormFieldEventListener(){
     let formSearchPokemon = document.getElementById('formSearchPokemon');
@@ -24,7 +25,26 @@ function handleFormSubmit(event){
 }
 
 function findPokemonByName(inputText){
+    let count = 0;
+    let filterdArrayOfItems = [];
+    arrayOfItems.forEach((item) => {        
+        if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
+            count++;
+            filterdArrayOfItems.push(item);
+        }
+    });
+    if (filterdArrayOfItems != []){
+        renderAllPokemons(filterdArrayOfItems);
+    }
+}
 
+function reloadLastView(){
+    resetInputField();
+    renderAllPokemons(arrayOfItems);
+}
+
+function resetInputField(){
+    document.getElementById('formSearchPokemon').reset();
 }
 
 async function initDOMContentEventListener(){
@@ -49,9 +69,9 @@ async function fetchSingleItem(itemObject) {
 
 async function getItemsFromAPI(){
     let path = "?offset="+OFFSET+"0&limit="+limit;
-    let arrayOfItemObjects = await fetchAllItems(path);
-    storeArrayOfItemObjectsToLocalStorage(arrayOfItemObjects);
-    await renderAllPokemons(arrayOfItemObjects);
+    arrayOfItems = await fetchAllItems(path);
+    storeArrayOfItemObjectsToLocalStorage(arrayOfItems);
+    await renderAllPokemons(arrayOfItems);
 }
 
 async function renderAllPokemons(arrayOffetchedPokemonsObjects){
