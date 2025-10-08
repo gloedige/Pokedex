@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
-let limit = 0;
+let limit = 20;
 
 function initFormFieldEventListener(){
     let formSearchPokemon = document.getElementById('formSearchPokemon');
@@ -13,12 +13,8 @@ function initFormFieldEventListener(){
 }
 
 async function initDOMContentEventListener(){
-    limit = 20;
-    // let path = "/76";
-    // initDialog();   
     initFormFieldEventListener();
-    await getFirstTwentyItems();
-    // fetchItems(path);
+    await getItemsFromAPI();
     hideLoadingSpinner();
 }
 
@@ -36,18 +32,19 @@ async function fetchSingleItem(itemObject) {
     return singlePokemon 
 }
 
-async function getFirstTwentyItems(){
+async function getItemsFromAPI(){
     let path = "?offset="+OFFSET+"0&limit="+limit;
-    let twentyFirstItems = await fetchAllItems(path);
-    renderAllPokemons(twentyFirstItems);
+    let arrayOfItemObjects = await fetchAllItems(path);
+    console.log(arrayOfItemObjects);
+    
+    renderAllPokemons(arrayOfItemObjects);
 }
 
-function renderAllPokemons(fetchedPokemons){
+function renderAllPokemons(arrayOffetchedPokemonsObjects){
     let allPokemonsRef = document.getElementById('container_pokemons');
     clearContainerPokemons(allPokemonsRef);
-    fetchedPokemons.forEach(async(singlePokemonObject) => {
+    arrayOffetchedPokemonsObjects.forEach(async(singlePokemonObject) => {
         let singlePokemon = await fetchSingleItem(singlePokemonObject);
-        
         allPokemonsRef.innerHTML += renderSinglePokemon(singlePokemon)
         setAllElementsOfType(singlePokemon);
     });
@@ -84,7 +81,7 @@ function hideLoadingSpinner(){
 
 async function loadmore(){
     limit = limit + 20;
-    await getFirstTwentyItems();
+    await getItemsFromAPI();
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
