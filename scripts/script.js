@@ -44,14 +44,17 @@ async function getFirstTwentyItems(){
 
 function renderAllPokemons(fetchedPokemons){
     let allPokemonsRef = document.getElementById('container_pokemons');
-
+    clearContainerPokemons(allPokemonsRef);
     fetchedPokemons.forEach(async(singlePokemonObject) => {
         let singlePokemon = await fetchSingleItem(singlePokemonObject);
-        console.log(singlePokemon);
         
         allPokemonsRef.innerHTML += renderSinglePokemon(singlePokemon)
         setAllElementsOfType(singlePokemon);
     });
+}
+
+function clearContainerPokemons(allPokemonsRef){
+    allPokemonsRef.innerHTML = '';
 }
 
 function setAllElementsOfType(singlePokemon){
