@@ -35,7 +35,6 @@ async function findPokemonByName(inputText){
         }
     });
     if (filterdArrayOfItems != []){
-        console.log(filterdArrayOfItems);
         arrayOfRawItems = filterdArrayOfItems;
         await getSingleItemsFromApi();
         await renderAllPokemons();
