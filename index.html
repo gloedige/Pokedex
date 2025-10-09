@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <title>Pokédex</title>
     <link rel="icon" href="./assets/icons/pokeball.png">
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/poke_card.css">
-    
+        
 </head>
 <body>
     <div class="wrapper">    
@@ -19,16 +19,34 @@
                     <h1>Pokédex</h1>
                 </div>
                 <form class="container_input_field" id="formSearchPokemon">
-                    <input type="text" value="Search your Pokemon" class="input_field" id="input_field" required onfocus="this.value=''">
+                    <input 
+                        type="text" 
+                        value="Search your Pokemon" 
+                        class="input_field" 
+                        id="input_field" 
+                        onfocus="this.value=''"
+                        minlength="3"
+                        maxlength="20"
+                        required>
+
                     <button type="submit" class="submit_btn">
                         <img src="./assets/icons/search_40dp_FFFFFF.svg" alt="find button">
+                    </button>
+                    <button class="submit_btn" onclick="reloadLastView()">
+                        <img src="./assets/icons/refresh_40dp_FFFFFF.svg" alt="find button">
                     </button>
                 </form>
             </div>
         </header>
         <main>
+            <div id="overlay">
+               <img src="./assets/icons/pokeball.png" class="loader">
+           </div>
             <div class="main_wrapper pokedex_results">
                 <ul id="container_pokemons" class="results"></ul>
+                <div class="load_more_container">
+                    <button class="load_more_btn" onclick="loadmore()">Load More</button>
+                </div>
             </div>
         </main>
         <footer>

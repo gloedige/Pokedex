@@ -1,12 +1,18 @@
+body{
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
 main{
-    
-    
-    
     background-image: url("../assets/img/body_bg.png");
+    flex: 1;
+    overflow-y: auto;
 }
 .main_wrapper{
     width: 100%;
     height: 100vh;
+    z-index: 1;
     flex-grow: 1;
     display: flex;
     margin: 0 auto;
@@ -32,6 +38,7 @@ header{
     height: 80px;
     position: sticky;
     top: 0px;
+    z-index: 1000;
 }
 .container_header{
     margin: 0 auto;
@@ -128,10 +135,48 @@ dialog{
     height: 900px;
     padding: 16px;
     border-radius: 30px;
-    
 }
 dialog::backdrop{
     background-color: rgba(0,0,0,0.6);
+}
+#overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: .8;
+    z-index: 2;
+}
+.loader {
+  position: relative;
+  width: 300px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.d_none{
+    display: none !important;
+}
+.load_more_btn{
+    margin: 16px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #313131;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 5px 5px 15px black;
+    cursor: pointer;
+}
+.load_more_container{
+    display: flex;
+    justify-content: center;
 }
 
 @media(max-width: 1050px){
