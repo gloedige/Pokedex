@@ -29,15 +29,18 @@
     /* transition: all 0.2s ease-in-out; */
     /* translate: none; */
 }
-.pokedex_results .results li a {
+.pokedex_results .results li button {
     float: left;
     display: block;
     position: relative;
     width: 100%;
     padding-top: 100%;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    border: none;
 }
-.pokedex_results .results li a img {
+.pokedex_results .results li button img {
     background-color: #F2F2F2;
     float: left;
     width: 100%;
@@ -67,10 +70,11 @@
     font-family: "Flexo-Bold",arial,sans-serif;
     color: #919191;
     font-size: 80%;
-    padding-top: 2px
+    padding-top: 2px;
+    margin-bottom: 0px
 }
 .pokedex_results .results li .pokemon_info .abilities span {
-    font-family: "Flexo-Medium",arial,sans-serif;
+    /* font-family: "Flexo-Medium",arial,sans-serif; */
     border-radius: 3px;
     line-height: 18px;
     max-width: 110px;
@@ -82,7 +86,8 @@
     text-align: center
 }
 .pokedex_results .results li .pokemon_info h5 {
-    font-family: "Flexo-Demi",arial,sans-serif;
+    font-family: blinker;
+    font-weight: 600;
     color: #313131;
     text-transform: none;
     font-size: 145%;
