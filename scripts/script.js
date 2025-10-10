@@ -145,4 +145,9 @@ function getArrayOfItemObjectsFromLocalStorage(){
     return JSON.parse(localStorage.getItem('ArrayOfItems'))
 }
 
+function handleModal(){
+    let modalRef = document.getElementById('pokemon_modal');
+    modalRef.innerHTML = renderModal();
+}
+
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
