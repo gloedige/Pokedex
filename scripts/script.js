@@ -5,13 +5,26 @@ let arrayOfRawItems = [];
 let arrayOfSingleItems = [];
 let filterdArrayOfItems = [];
 
-function initFormFieldEventListener(){
+async function initFormFieldEventListener(){
     let formSearchPokemon = document.getElementById('formSearchPokemon');
     if (formSearchPokemon){
         formSearchPokemon.addEventListener('submit', function(event){
             handleFormSubmit(event);
         })
     };
+}
+
+async function initModalEventListener(){
+    let pokemonModal = document.getElementById('pokemonModal');
+    
+    pokemonModal.addEventListener('show.bs.modal', (event) => {
+        let button = event.relatedTarget;
+        let pokemonId = button.getAttribute('data-pokemon-id');       
+
+        let modalTitle = pokemonModal.querySelector('.modal-title');
+        
+        modalTitle.textContent = "Ich bin Pokemon mit der ID: " + pokemonId +"!"
+    });
 }
 
 function handleFormSubmit(event){
@@ -54,11 +67,13 @@ function resetInputField(){
 }
 
 async function initDOMContentEventListener(){
-    initFormFieldEventListener();
+    await initFormFieldEventListener();
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
     hideLoadingSpinner();
+    handleModal();
+    await initModalEventListener();
 }
 
 async function fetchAllItems(path="") {
@@ -146,8 +161,11 @@ function getArrayOfItemObjectsFromLocalStorage(){
 }
 
 function handleModal(){
-    let modalRef = document.getElementById('pokemon_modal');
-    modalRef.innerHTML = renderModal();
+    let modalElement = document.getElementById('pokemonModal');
+    
+    if(modalElement){
+        modalElement.innerHTML = renderModal();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initDOMContentEventListener);
