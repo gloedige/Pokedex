@@ -6,7 +6,12 @@ function renderSinglePokemon(singlePokemon){
                 <button  
                     data-bs-toggle="modal" 
                     data-bs-target="#pokemonModal"
-                    data-pokemon-id="${singlePokemon.id}">
+                    data-pokemon-id="${singlePokemon.id}"
+                    data-pokemon-name="${singlePokemon.name}"
+                    data-pokemon-height="${singlePokemon.height}"
+                    data-pokemon-weight="${singlePokemon.weight}"
+                    data-pokemon-ability="${JSON.stringify(singlePokemon.abilities)}"
+                    data-pokemon-stats="${JSON.stringify(singlePokemon.stats)}">
                     <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img_${singlePokemon.id}">
                 </button>
                 <div class="pokemon_info" id="${singlePokemon.id}">
