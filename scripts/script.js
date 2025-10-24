@@ -25,9 +25,9 @@ async function initModalEventListener(){
         let pokemonName = button.dataset.pokemonName;
         let pokemonHeight = button.dataset.pokemonHeight;
         let pokemonWeight = button.dataset.pokemonWeight;
-        let pokemonAbility = button.dataset.pokemonAbility;
-        let pokemonStats = button.dataset.pokemonStats;
-        console.table(pokemonStats);
+        let pokemonAbilityObj = JSON.parse(button.dataset.pokemonAbility.replace(/'/g, '"'));
+        let pokemonStatsArr = JSON.parse(button.dataset.pokemonStats.replace(/'/g, '"'));
+        console.table(pokemonStatsArr);
         
 
         let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
@@ -37,7 +37,7 @@ async function initModalEventListener(){
         let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
         // hier muss eine Function die Abilities und Stats heraussuchen!
         let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
-        handleStats(pokemonStats);
+        handleStats(pokemonStatsArr);
         
         modalPokemonName.textContent = pokemonName.toUpperCase();
         modalPokemonId.textContent = pokemonId.padStart(4,'0');
@@ -45,15 +45,24 @@ async function initModalEventListener(){
     });
 }
 
-function handleStats(pokemonStats){
-    let statsObject = getStatsToObject(pokemonStats);
+function handleStats(pokemonStatsArr){
+    let statsObject = getStatsToObject(pokemonStatsArr);
     let modalPokemonstats = pokemonModal.querySelector('.modal-pokemon-stats');
+    console.log(statsObject);
+    modalPokemonstats.innerHTML = renderStatsToModal(statsObject); 
+    
     
     
 }
 
-function getStatsToObject(pokemonStats){
-    console.log(pokemonStats);
+function getStatsToObject(pokemonStatsArr){
+    let statsObjVar = {};
+    let key = "";
+     for (let itemObject of pokemonStatsArr){
+        key = "'"+itemObject.stat.name+"'";
+        statsObjVar[key] = itemObject.base_stat;
+     }
+     return statsObjVar
     
 
 }
