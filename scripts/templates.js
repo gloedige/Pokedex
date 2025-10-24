@@ -10,7 +10,7 @@ function renderSinglePokemon(singlePokemon){
                     data-pokemon-name="${singlePokemon.name}"
                     data-pokemon-height="${singlePokemon.height}"
                     data-pokemon-weight="${singlePokemon.weight}"
-                    data-pokemon-ability="${JSON.stringify(singlePokemon.abilities)}"
+                    data-pokemon-ability="${JSON.stringify(singlePokemon.abilities).replace(/"/g, "'")}"
                     data-pokemon-stats="${JSON.stringify(singlePokemon.stats).replace(/"/g, "'")}">
                     <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img_${singlePokemon.id}">
                 </button>
@@ -48,6 +48,7 @@ function renderModal(){
                         <div class="modal-body">
                             <div class="modal-pokemon-img"></div>
                             <h5>Stats</h5>
+                            <div class="modal-pokemon-stats"></div>s
                             <p>Modal body text goes here.</p>
                         </div>
                         <div class="modal-footer">
