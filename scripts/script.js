@@ -1,3 +1,4 @@
+// const IMG_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
 let limit = 20;
@@ -19,12 +20,42 @@ async function initModalEventListener(){
     
     pokemonModal.addEventListener('show.bs.modal', (event) => {
         let button = event.relatedTarget;
-        let pokemonId = button.getAttribute('data-pokemon-id');       
 
-        let modalTitle = pokemonModal.querySelector('.modal-title');
+        let pokemonId = button.dataset.pokemonId;
+        let pokemonName = button.dataset.pokemonName;
+        let pokemonHeight = button.dataset.pokemonHeight;
+        let pokemonWeight = button.dataset.pokemonWeight;
+        let pokemonAbility = button.dataset.pokemonAbility;
+        let pokemonStats = button.dataset.pokemonStats;
+        console.table(pokemonStats);
         
-        modalTitle.textContent = "Ich bin Pokemon mit der ID: " + pokemonId +"!"
+
+        let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
+        let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
+        let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
+        let modalPokemonHeight = pokemonModal.querySelector('.modal-pokemon-height');
+        let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
+        // hier muss eine Function die Abilities und Stats heraussuchen!
+        let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
+        handleStats(pokemonStats);
+        
+        modalPokemonName.textContent = pokemonName.toUpperCase();
+        modalPokemonId.textContent = pokemonId.padStart(4,'0');
+        modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
     });
+}
+
+function handleStats(pokemonStats){
+    let statsObject = getStatsToObject(pokemonStats);
+    let modalPokemonstats = pokemonModal.querySelector('.modal-pokemon-stats');
+    
+    
+}
+
+function getStatsToObject(pokemonStats){
+    console.log(pokemonStats);
+    
+
 }
 
 function handleFormSubmit(event){
