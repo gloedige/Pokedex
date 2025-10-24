@@ -11,7 +11,7 @@ function renderSinglePokemon(singlePokemon){
                     data-pokemon-height="${singlePokemon.height}"
                     data-pokemon-weight="${singlePokemon.weight}"
                     data-pokemon-ability="${JSON.stringify(singlePokemon.abilities)}"
-                    data-pokemon-stats="${JSON.stringify(singlePokemon.stats)}">
+                    data-pokemon-stats="${JSON.stringify(singlePokemon.stats).replace(/"/g, "'")}">
                     <img src = "${IMG_URL}${singlePokemon.id}.svg" alt="Pokemon image" id="poke_img_${singlePokemon.id}">
                 </button>
                 <div class="pokemon_info" id="${singlePokemon.id}">
@@ -39,20 +39,47 @@ function renderModal(){
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
+                            <h5 class="modal-pokemon-name">Pokemon Name</h5>
+                            <h5 class="modal-pokemon-id">
+                                <span class="number_prefix">Nr.&nbsp;</span>
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div class="modal-pokemon-img"></div>
+                            <h5>Stats</h5>
                             <p>Modal body text goes here.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Previous</button>
+                            <button type="button" class="btn btn-secondary">Next</button>
                         </div>
                     </div>
                 </div>
             
+            `
+}
+
+function renderStatsToModal(stats){
+    return `
+            <table>
+                <tr>
+                    <td>HP</td>
+                    <td>Attack</td>
+                    <td>Defense</td>
+                    <td>Special-Attack</td>
+                    <td>Special-Defense</td>
+                    <td>Speed</td>
+                </tr>
+                <tr>
+                    <td>${(stats.hp)}</td>
+                    <td>${(stats.attack)}</td>
+                    <td>${(stats.defense)}</td>
+                    <td>${(stats.special-attack)}</td>
+                    <td>${(stats.special-defense)}</td>
+                    <td>${(stats.speed)}</td>
+                </tr>
+            </table>
+
             `
 }
