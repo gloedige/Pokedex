@@ -76,8 +76,8 @@ function renderStatsToModal(stats){
                     <td>${(stats.hp)}</td>
                     <td>${(stats.attack)}</td>
                     <td>${(stats.defense)}</td>
-                    <td>${(stats.special-attack)}</td>
-                    <td>${(stats.special-defense)}</td>
+                    <td>${(stats['special-attack'])}</td>
+                    <td>${(stats['special-defense'])}</td>
                     <td>${(stats.speed)}</td>
                 </tr>
             </table>
