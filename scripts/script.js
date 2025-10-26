@@ -1,4 +1,4 @@
-// const IMG_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
+const BASE_SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/";
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
 let limit = 20;
@@ -38,7 +38,7 @@ async function initModalEventListener(){
         
         // hier muss eine Function die Abilities und Stats heraussuchen!
         handleStats(pokemonStatsArr);
-        handleAbilities(pokemonAbilityArr);
+        handlePreferences(pokemonAbilityArr);
         
         
         modalPokemonName.textContent = pokemonName.toUpperCase();
@@ -58,21 +58,26 @@ function getStatsToObject(pokemonStatsArr){
     let key = "";
     for (let itemObject of pokemonStatsArr){
         key = itemObject.stat.name;
-        console.log(key);
-        
         statsObjVar[key] = itemObject.base_stat;
     }
     return statsObjVar
 }
 
-function handleAbilities(pokemonAbilityArr){
+function handlePreferences(){
     let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
+    
+}
+
+function getPreferencesObj(pokemonAbilityArr){
+
+}
+
+function getAbilities(pokemonAbilityArr){
     let arrOfAbilities = [];
     for (const ability of pokemonAbilityArr) {
         arrOfAbilities.push(ability.ability.name)
     }
     console.log(arrOfAbilities);
-    
 }
 
 function handleFormSubmit(event){
