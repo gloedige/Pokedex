@@ -1,4 +1,4 @@
-const BASE_SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/";
+const BASE_SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species";
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const OFFSET = 0;
 let limit = 20;
@@ -18,27 +18,35 @@ async function initFormFieldEventListener(){
 async function initModalEventListener(){
     let pokemonModal = document.getElementById('pokemonModal');
     
-    pokemonModal.addEventListener('show.bs.modal', (event) => {
+    pokemonModal.addEventListener('show.bs.modal', async (event) => {
         let button = event.relatedTarget;
 
         let pokemonId = button.dataset.pokemonId;
-        let pokemonName = button.dataset.pokemonName;
-        let pokemonHeight = button.dataset.pokemonHeight;
-        let pokemonWeight = button.dataset.pokemonWeight;
-        let pokemonAbilityArr = JSON.parse(button.dataset.pokemonAbility.replace(/'/g, '"'));
-        let pokemonStatsArr = JSON.parse(button.dataset.pokemonStats.replace(/'/g, '"'));
-        console.table(pokemonAbilityArr);
+
+        let singlePokemon = await fetchSelectedPokemon(pokemonId);
+        
+        let pokemonName = singlePokemon.name;
+        let pokemonHeight = singlePokemon.height;
+        let pokemonWeight = singlePokemon.weight;
+        let pokemonStatsArr = singlePokemon.stats;
+        let pokemonAbilityArr = singlePokemon.abilities;
+        
+        handleStats(pokemonStatsArr);
+        
+        let singleSpecies = await fetchSelectedSpecies(pokemonId);
         
 
         let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
         let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
         let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
+
+
         let modalPokemonHeight = pokemonModal.querySelector('.modal-pokemon-height');
         let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
+
         
         // hier muss eine Function die Abilities und Stats heraussuchen!
-        handleStats(pokemonStatsArr);
-        handlePreferences(pokemonAbilityArr);
+        handlePreferences(pokemonAbilityArr, singleSpecies);
         
         
         modalPokemonName.textContent = pokemonName.toUpperCase();
@@ -63,13 +71,34 @@ function getStatsToObject(pokemonStatsArr){
     return statsObjVar
 }
 
-function handlePreferences(){
+function handlePreferences(pokemonAbilityArr, singleSpecies){
     let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
+    let genusOfSinglePokemon = getGenusOfSinglePokemon(singleSpecies);
+    console.log(genusOfSinglePokemon);
+    
+    
+}
+
+function getGenusOfSinglePokemon(singleSpecies){
+    for (let generaItem of singleSpecies.genera) {
+        if (generaItem.language.name == "en"){
+            return generaItem.genus
+        }
+    }
     
 }
 
 function getPreferencesObj(pokemonAbilityArr){
+    let preferenceObjVar = {};
+    let key = "";
+    let arrOfAbilities = getAbilities(pokemonAbilityArr);
 
+
+    for (let itemObject of pokemonAbilityArr){
+        key = itemObject.ability.name;
+        statsObjVar[key] = itemObject.base_stat;
+    }
+    return statsObjVar
 }
 
 function getAbilities(pokemonAbilityArr){
@@ -77,7 +106,7 @@ function getAbilities(pokemonAbilityArr){
     for (const ability of pokemonAbilityArr) {
         arrOfAbilities.push(ability.ability.name)
     }
-    console.log(arrOfAbilities);
+    return arrOfAbilities
 }
 
 function handleFormSubmit(event){
@@ -141,6 +170,18 @@ async function fetchSingleItem(itemObject) {
     let response = await fetch(itemUrl);
     let singlePokemon = await response.json();
     return singlePokemon 
+}
+
+async function fetchSelectedPokemon(pokemonId) {
+    let responsePokemon = await fetch(BASE_URL + "/" + pokemonId + "/");
+    let singlePokemon = await responsePokemon.json();
+    return singlePokemon
+}
+
+async function fetchSelectedSpecies(pokemonId) {
+    let responsePokemonSpecies = await fetch(BASE_SPECIES_URL + "/" + pokemonId + "/");
+    let singleSpecies = responsePokemonSpecies.json();
+    return singleSpecies
 }
 
 async function getItemsFromApi(){
