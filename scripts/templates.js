@@ -61,7 +61,7 @@ function renderModal(){
             `
 }
 
-function renderStatsToModal(stats){
+function renderStatsToModal(statsObj){
     return `
             <table>
                 <tr>
@@ -73,14 +73,20 @@ function renderStatsToModal(stats){
                     <td>Speed</td>
                 </tr>
                 <tr>
-                    <td>${(stats.hp)}</td>
-                    <td>${(stats.attack)}</td>
-                    <td>${(stats.defense)}</td>
-                    <td>${(stats['special-attack'])}</td>
-                    <td>${(stats['special-defense'])}</td>
-                    <td>${(stats.speed)}</td>
+                    <td>${(statsObj.hp)}</td>
+                    <td>${(statsObj.attack)}</td>
+                    <td>${(statsObj.defense)}</td>
+                    <td>${(statsObj['special-attack'])}</td>
+                    <td>${(statsObj['special-defense'])}</td>
+                    <td>${(statsObj.speed)}</td>
                 </tr>
             </table>
+
+            `
+}
+
+function renderPreferencesToModal(abilitiesArr){
+    return  `
 
             `
 }
