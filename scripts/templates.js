@@ -43,8 +43,8 @@ function renderModal(){
                         <div class="modal-body">
                             <div class="modal-pokemon-img"></div>
                             <h5>Stats</h5>
-                            <div class="modal-pokemon-stats"></div>s
-                            <p>Modal body text goes here.</p>
+                            <div class="modal-pokemon-stats"></div>
+                            <div class="modal-preferences"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Previous</button>
@@ -80,8 +80,27 @@ function renderStatsToModal(statsObj){
             `
 }
 
-function renderPreferencesToModal(abilitiesArr){
+function renderPreferencesToModal(preferenceObj){
     return  `
-
+                <table>
+                    <tr>
+                        <td>Height</td>
+                        <td>${preferenceObj.height}</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>${preferenceObj.weight}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>Abilities</td>
+                        <td>${preferenceObj.abilities}</td>
+                    </tr>
+                    <tr>
+                        <td>Genus</td>
+                        <td>${preferenceObj.genus}</td>
+                    </tr>
+                </table>
             `
 }
