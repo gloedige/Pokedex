@@ -60,9 +60,8 @@ async function handlePreferences(singlePokemon, pokemonId){
     let preferenceObj = await getPreferencesObj(singlePokemon, pokemonId);
     console.log(preferenceObj);
     
-    let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
-    let modalPokemonHeight = pokemonModal.querySelector('.modal-pokemon-height');
-    let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
+    let modalPokemonPreferences = pokemonModal.querySelector('.modal-preferences');
+    modalPokemonPreferences.innerHTML = renderPreferencesToModal(preferenceObj);
     
 }
 
