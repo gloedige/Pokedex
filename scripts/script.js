@@ -22,40 +22,25 @@ async function initModalEventListener(){
         let button = event.relatedTarget;
 
         let pokemonId = button.dataset.pokemonId;
-
         let singlePokemon = await fetchSelectedPokemon(pokemonId);
-        
         let pokemonName = singlePokemon.name;
-        let pokemonHeight = singlePokemon.height;
-        let pokemonWeight = singlePokemon.weight;
-        let pokemonStatsArr = singlePokemon.stats;
-        let pokemonAbilityArr = singlePokemon.abilities;
         
-        handleStats(pokemonStatsArr);
+        handleStats(singlePokemon);
         
-        let singleSpecies = await fetchSelectedSpecies(pokemonId);
-        
-
-        let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
         let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
         let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
-
-
-        let modalPokemonHeight = pokemonModal.querySelector('.modal-pokemon-height');
-        let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
-
+        let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
+  
+        handlePreferences(singlePokemon, pokemonId);
         
-        // hier muss eine Function die Abilities und Stats heraussuchen!
-        handlePreferences(pokemonAbilityArr, singleSpecies);
-        
-        
-        modalPokemonName.textContent = pokemonName.toUpperCase();
         modalPokemonId.textContent = pokemonId.padStart(4,'0');
+        modalPokemonName.textContent = pokemonName.toUpperCase();
         modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
     });
 }
 
-function handleStats(pokemonStatsArr){
+function handleStats(singlePokemon){
+    let pokemonStatsArr = singlePokemon.stats;
     let statsObject = getStatsToObject(pokemonStatsArr);
     let modalPokemonstats = pokemonModal.querySelector('.modal-pokemon-stats');
     modalPokemonstats.innerHTML = renderStatsToModal(statsObject); 
@@ -71,12 +56,32 @@ function getStatsToObject(pokemonStatsArr){
     return statsObjVar
 }
 
-function handlePreferences(pokemonAbilityArr, singleSpecies){
+async function handlePreferences(singlePokemon, pokemonId){
+    let preferenceObj = await getPreferencesObj(singlePokemon, pokemonId);
+    console.log(preferenceObj);
+    
     let modalPokemonAbility = pokemonModal.querySelector('.modal-pokemon-ability');
-    let genusOfSinglePokemon = getGenusOfSinglePokemon(singleSpecies);
-    console.log(genusOfSinglePokemon);
+    let modalPokemonHeight = pokemonModal.querySelector('.modal-pokemon-height');
+    let modalPokemonWeight = pokemonModal.querySelector('.modal-pokemon-weight');
     
-    
+}
+
+async function getPreferencesObj(singlePokemon, pokemonId){
+    let preferenceObjVar = {};
+
+    let singleSpecies = await fetchSelectedSpecies(pokemonId);
+    let pokemonGenus = getGenusOfSinglePokemon(singleSpecies);
+    let pokemonHeight = singlePokemon.height;
+    let pokemonWeight = singlePokemon.weight;
+    let arrOfAbilities = singlePokemon.abilities;
+    let pokemonAbilityArr = getAbilities(arrOfAbilities);
+
+    preferenceObjVar['genus'] = pokemonGenus;
+    preferenceObjVar['height'] = pokemonHeight;
+    preferenceObjVar['weight'] = pokemonWeight;
+    preferenceObjVar['abilities'] = pokemonAbilityArr;
+
+    return preferenceObjVar
 }
 
 function getGenusOfSinglePokemon(singleSpecies){
@@ -85,20 +90,6 @@ function getGenusOfSinglePokemon(singleSpecies){
             return generaItem.genus
         }
     }
-    
-}
-
-function getPreferencesObj(pokemonAbilityArr){
-    let preferenceObjVar = {};
-    let key = "";
-    let arrOfAbilities = getAbilities(pokemonAbilityArr);
-
-
-    for (let itemObject of pokemonAbilityArr){
-        key = itemObject.ability.name;
-        statsObjVar[key] = itemObject.base_stat;
-    }
-    return statsObjVar
 }
 
 function getAbilities(pokemonAbilityArr){
