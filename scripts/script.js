@@ -105,8 +105,8 @@ function handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor){
         
     modalPokemonId.textContent = pokemonId.padStart(4,'0');
     modalPokemonName.textContent = pokemonName.toUpperCase();
+    modalPokemonImg.setAttribute("class", "modal-pokemon-img " + classNameBackgroundColor);
     modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
-    modalPokemonImg.classList.add(classNameBackgroundColor);
 }
 
 function handleFormSubmit(event){
