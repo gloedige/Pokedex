@@ -84,21 +84,21 @@ function renderPreferencesToModal(preferenceObj){
     return  `
                 <table>
                     <tr>
-                        <td>Height</td>
-                        <td>${preferenceObj.height}</td>
+                        <td>Height: </td>
+                        <td>${preferenceObj.height*10} cm</td>
                     </tr>
                     <tr>
-                        <td>Weight</td>
-                        <td>${preferenceObj.weight}</td>
+                        <td>Weight: </td>
+                        <td>${preferenceObj.weight/10} kg</td>
                     </tr>
                 </table>
                 <table>
                     <tr>
-                        <td>Abilities</td>
+                        <td>Abilities: </td>
                         <td>${preferenceObj.abilities}</td>
                     </tr>
                     <tr>
-                        <td>Genus</td>
+                        <td>Genus: </td>
                         <td>${preferenceObj.genus}</td>
                     </tr>
                 </table>
