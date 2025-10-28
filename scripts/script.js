@@ -21,8 +21,11 @@ async function initModalEventListener(){
     pokemonModal.addEventListener('show.bs.modal', async (event) => {
         let button = event.relatedTarget;
 
-        let classNameBackgroundColor = findImgClassName(button);  
         let pokemonId = button.dataset.pokemonId;
+        let classNameBackgroundColor = findImgClassNameById(pokemonId);  
+        
+         
+
         let singlePokemon = await fetchSelectedPokemon(pokemonId);
         let pokemonName = singlePokemon.name;
         
@@ -32,12 +35,11 @@ async function initModalEventListener(){
     });
 }
 
-function findImgClassName(button){
-    for (let child of button.children){
-            if(child.className.includes("background_color_")){
-                return child.className
-            }
-        }
+function findImgClassNameById(pokemonId){
+    let containerById = document.getElementById("poke_img_" + pokemonId);
+    if(containerById.className.includes("background_color")){
+        return containerById.className;
+    }
 }
 
 function handleStats(singlePokemon){
@@ -108,6 +110,51 @@ function handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor){
     modalPokemonImg.setAttribute("class", "modal-pokemon-img " + classNameBackgroundColor);
     modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
 }
+
+
+
+
+async function jumpPokemonForward(pokemonId){
+    //hier muss die ID des nächsten Pokemons verwendet werden
+    let singlePokemon = await fetchSelectedPokemon(pokemonId);
+    let pokemonName = singlePokemon.name;
+    let classNameBackgroundColorById = findImgClassNameById(pokemonId);
+    let containerById = document.getElementById("poke_img_"+pokemonId);
+        console.log(containerById);
+
+
+    let dialogRef = document.getElementById('imgDialog');
+    if(pokemonId==numberOfImg-1){
+        pokemonId = 0;
+    }
+    else{
+        pokemonId = pokemonId + 1;
+    }
+    let singleImgPath = assembleImgPath(pokemonId);
+    dialogRef.innerHTML = assembleDialogElements(singleImgPath, pokemonId); 
+}
+
+async function jumpPokemonBackward(pokemonId){
+    let singlePokemon = await fetchSelectedPokemon(pokemonId);
+
+
+    let dialogRef = document.getElementById('imgDialog');
+    if(pokemonId==0){
+        pokemonId = numberOfImg -1;
+    }
+    else{
+        pokemonId = pokemonId - 1;
+    }
+    let singleImgPath = assembleImgPath(pokemonId);
+    dialogRef.innerHTML = assembleDialogElements(singleImgPath, pokemonId); 
+}
+
+
+
+
+
+
+
 
 function handleFormSubmit(event){
     event.preventDefault();
