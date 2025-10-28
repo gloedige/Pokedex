@@ -190,6 +190,9 @@ dialog::backdrop{
 .modal-preferences{
     display: flex;
 }
+.modal-footer{
+    justify-content: space-between;
+}
 
 @media(max-width: 1050px){
    
