@@ -26,16 +26,8 @@ async function initModalEventListener(){
         let pokemonName = singlePokemon.name;
         
         handleStats(singlePokemon);
-        
-        let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
-        let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
-        let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
-  
+        handleNameIdImg(pokemonId, pokemonName);
         handlePreferences(singlePokemon, pokemonId);
-        
-        modalPokemonId.textContent = pokemonId.padStart(4,'0');
-        modalPokemonName.textContent = pokemonName.toUpperCase();
-        modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
     });
 }
 
@@ -58,11 +50,9 @@ function getStatsToObject(pokemonStatsArr){
 
 async function handlePreferences(singlePokemon, pokemonId){
     let preferenceObj = await getPreferencesObj(singlePokemon, pokemonId);
-    console.log(preferenceObj);
-    
+
     let modalPokemonPreferences = pokemonModal.querySelector('.modal-preferences');
     modalPokemonPreferences.innerHTML = renderPreferencesToModal(preferenceObj);
-    
 }
 
 async function getPreferencesObj(singlePokemon, pokemonId){
@@ -97,6 +87,16 @@ function getAbilities(pokemonAbilityArr){
         arrOfAbilities.push(ability.ability.name)
     }
     return arrOfAbilities
+}
+
+function handleNameIdImg(pokemonId, pokemonName){
+    let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
+    let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
+    let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
+        
+    modalPokemonId.textContent = pokemonId.padStart(4,'0');
+    modalPokemonName.textContent = pokemonName.toUpperCase();
+    modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
 }
 
 function handleFormSubmit(event){
