@@ -21,14 +21,23 @@ async function initModalEventListener(){
     pokemonModal.addEventListener('show.bs.modal', async (event) => {
         let button = event.relatedTarget;
 
+        let classNameBackgroundColor = findImgClassName(button);  
         let pokemonId = button.dataset.pokemonId;
         let singlePokemon = await fetchSelectedPokemon(pokemonId);
         let pokemonName = singlePokemon.name;
         
         handleStats(singlePokemon);
-        handleNameIdImg(pokemonId, pokemonName);
+        handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor);
         handlePreferences(singlePokemon, pokemonId);
     });
+}
+
+function findImgClassName(button){
+    for (let child of button.children){
+            if(child.className.includes("background_color_")){
+                return child.className
+            }
+        }
 }
 
 function handleStats(singlePokemon){
@@ -89,7 +98,7 @@ function getAbilities(pokemonAbilityArr){
     return arrOfAbilities
 }
 
-function handleNameIdImg(pokemonId, pokemonName){
+function handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor){
     let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
     let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
     let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
@@ -97,6 +106,7 @@ function handleNameIdImg(pokemonId, pokemonName){
     modalPokemonId.textContent = pokemonId.padStart(4,'0');
     modalPokemonName.textContent = pokemonName.toUpperCase();
     modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
+    modalPokemonImg.classList.add(classNameBackgroundColor);
 }
 
 function handleFormSubmit(event){
