@@ -20,19 +20,16 @@ async function initModalEventListener(){
     
     pokemonModal.addEventListener('show.bs.modal', async (event) => {
         let button = event.relatedTarget;
-
         let pokemonId = button.dataset.pokemonId;
-        let classNameBackgroundColor = findImgClassNameById(pokemonId);  
         
-         
-
-        let singlePokemon = await fetchSelectedPokemon(pokemonId);
-        let pokemonName = singlePokemon.name;
-        
-        handleStats(singlePokemon);
-        handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor);
-        handlePreferences(singlePokemon, pokemonId);
+       renderPokemonToModal(pokemonId);
     });
+}
+
+function renderPokemonToModal(pokemonId) {
+    handleStats(pokemonId);
+    handleNameIdImg(pokemonId);
+    handlePreferences(pokemonId);
 }
 
 function findImgClassNameById(pokemonId){
@@ -42,7 +39,8 @@ function findImgClassNameById(pokemonId){
     }
 }
 
-function handleStats(singlePokemon){
+async function handleStats(pokemonId){
+    let singlePokemon = await fetchSelectedPokemon(pokemonId);
     let pokemonStatsArr = singlePokemon.stats;
     let statsObject = getStatsToObject(pokemonStatsArr);
     let modalPokemonstats = pokemonModal.querySelector('.modal-pokemon-stats');
@@ -59,7 +57,8 @@ function getStatsToObject(pokemonStatsArr){
     return statsObjVar
 }
 
-async function handlePreferences(singlePokemon, pokemonId){
+async function handlePreferences(pokemonId){
+    let singlePokemon = await fetchSelectedPokemon(pokemonId);
     let preferenceObj = await getPreferencesObj(singlePokemon, pokemonId);
 
     let modalPokemonPreferences = pokemonModal.querySelector('.modal-preferences');
@@ -100,7 +99,11 @@ function getAbilities(pokemonAbilityArr){
     return arrOfAbilities
 }
 
-function handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor){
+async function handleNameIdImg(pokemonId){
+    let classNameBackgroundColor = findImgClassNameById(pokemonId); 
+    let singlePokemon = await fetchSelectedPokemon(pokemonId);
+    let pokemonName = singlePokemon.name;
+
     let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
     let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
     let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
@@ -114,24 +117,22 @@ function handleNameIdImg(pokemonId, pokemonName, classNameBackgroundColor){
 
 
 
-async function jumpPokemonForward(pokemonId){
+async function jumpPokemonForward(){
+    let idCurrentPokemon = pokemonModal.querySelector('.modal-pokemon-id');
     //hier muss die ID des nächsten Pokemons verwendet werden
-    let singlePokemon = await fetchSelectedPokemon(pokemonId);
-    let pokemonName = singlePokemon.name;
-    let classNameBackgroundColorById = findImgClassNameById(pokemonId);
-    let containerById = document.getElementById("poke_img_"+pokemonId);
-        console.log(containerById);
-
-
-    let dialogRef = document.getElementById('imgDialog');
-    if(pokemonId==numberOfImg-1){
-        pokemonId = 0;
+    console.log(idCurrentPokemon);
+    
+    if(idCurrentPokemon == 1328){
+        pokemonId = idCurrentPokemon;
     }
     else{
-        pokemonId = pokemonId + 1;
+        pokemonId = idCurrentPokemon + 1;
     }
-    let singleImgPath = assembleImgPath(pokemonId);
-    dialogRef.innerHTML = assembleDialogElements(singleImgPath, pokemonId); 
+        let singlePokemon = await fetchSelectedPokemon(pokemonId);
+        let pokemonName = singlePokemon.name;
+        let classNameBackgroundColorById = findImgClassNameById(pokemonId);
+        let containerById = document.getElementById("poke_img_"+pokemonId);
+        console.log(containerById); 
 }
 
 async function jumpPokemonBackward(pokemonId){
