@@ -32,13 +32,6 @@ function renderPokemonToModal(pokemonId) {
     handlePreferences(pokemonId);
 }
 
-function findImgClassNameById(pokemonId){
-    let containerById = document.getElementById("poke_img_" + pokemonId);
-    if(containerById.className.includes("background_color")){
-        return containerById.className;
-    }
-}
-
 async function handleStats(pokemonId){
     let singlePokemon = await fetchSelectedPokemon(pokemonId);
     let pokemonStatsArr = singlePokemon.stats;
@@ -99,28 +92,28 @@ function getAbilities(pokemonAbilityArr){
     return arrOfAbilities
 }
 
-async function handleNameIdImg(pokemonId){
-    let classNameBackgroundColor = findImgClassNameById(pokemonId); 
+async function handleNameIdImg(pokemonId){ 
     let singlePokemon = await fetchSelectedPokemon(pokemonId);
     let pokemonName = singlePokemon.name;
-
+    
     let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
     let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
     let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
-        
+    
     modalPokemonId.textContent = pokemonId.padStart(4,'0');
     modalPokemonName.textContent = pokemonName.toUpperCase();
-    modalPokemonImg.setAttribute("class", "modal-pokemon-img " + classNameBackgroundColor);
     modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image">`;
+    
+    setBackgroundColorOfImgInModal(singlePokemon);
 }
 
 
 
 
 async function jumpPokemonForward(){
-    let idCurrentPokemon = pokemonModal.querySelector('.modal-pokemon-id');
-    //hier muss die ID des nächsten Pokemons verwendet werden
-    console.log(idCurrentPokemon);
+    let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
+    let idCurrentPokemonString = idContainer.innerHTML;
+    let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
     
     if(idCurrentPokemon == 1328){
         pokemonId = idCurrentPokemon;
@@ -128,11 +121,8 @@ async function jumpPokemonForward(){
     else{
         pokemonId = idCurrentPokemon + 1;
     }
-        let singlePokemon = await fetchSelectedPokemon(pokemonId);
-        let pokemonName = singlePokemon.name;
-        let classNameBackgroundColorById = findImgClassNameById(pokemonId);
-        let containerById = document.getElementById("poke_img_"+pokemonId);
-        console.log(containerById); 
+    let pokemonIdString = String(pokemonId);
+    renderPokemonToModal(pokemonIdString);
 }
 
 async function jumpPokemonBackward(pokemonId){
@@ -148,6 +138,13 @@ async function jumpPokemonBackward(pokemonId){
     }
     let singleImgPath = assembleImgPath(pokemonId);
     dialogRef.innerHTML = assembleDialogElements(singleImgPath, pokemonId); 
+}
+
+function setBackgroundColorOfImgInModal(singlePokemon){
+    let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img');
+    let type = singlePokemon.types[0].type;
+    let classNameBackgroundColor = "background_color_" + type.name;
+    modalPokemonImg.setAttribute("class", "modal-pokemon-img " + classNameBackgroundColor);
 }
 
 
