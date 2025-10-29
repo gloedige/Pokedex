@@ -193,6 +193,9 @@ dialog::backdrop{
 .modal-footer{
     justify-content: space-between;
 }
+.owner_name{
+    margin: 0px;
+}
 
 @media(max-width: 1050px){
    
