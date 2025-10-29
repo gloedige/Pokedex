@@ -47,7 +47,7 @@ function renderModal(){
                             <div class="modal-preferences"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Previous</button>
+                            <button type="button" class="btn btn-primary" onclick="jumpPokemonBackward()">Previous</button>
                             <button type="button" class="btn btn-secondary" onclick="jumpPokemonForward()">Next</button>
                         </div>
                     </div>

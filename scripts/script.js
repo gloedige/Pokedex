@@ -125,19 +125,19 @@ async function jumpPokemonForward(){
     renderPokemonToModal(pokemonIdString);
 }
 
-async function jumpPokemonBackward(pokemonId){
-    let singlePokemon = await fetchSelectedPokemon(pokemonId);
-
-
-    let dialogRef = document.getElementById('imgDialog');
-    if(pokemonId==0){
-        pokemonId = numberOfImg -1;
+async function jumpPokemonBackward(){
+    let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
+    let idCurrentPokemonString = idContainer.innerHTML;
+    let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
+    
+    if(idCurrentPokemon == 1){
+        pokemonId = idCurrentPokemon;
     }
     else{
-        pokemonId = pokemonId - 1;
+        pokemonId = idCurrentPokemon - 1;
     }
-    let singleImgPath = assembleImgPath(pokemonId);
-    dialogRef.innerHTML = assembleDialogElements(singleImgPath, pokemonId); 
+    let pokemonIdString = String(pokemonId);
+    renderPokemonToModal(pokemonIdString); 
 }
 
 function setBackgroundColorOfImgInModal(singlePokemon){
