@@ -196,3 +196,46 @@
     background-color: #4592c4;
     color: #fff
 }
+
+@media(max-width: 1000px){
+    .pokedex_results .results li{
+        width: 20%;
+    }
+
+
+}
+
+@media(max-width: 900px){
+    .pokedex_results .results li .pokemon_info h5{
+        font-size: 100%;
+    }
+    ul{
+        padding-left: 5%;
+    }
+    .pokedex_results .results li .pokemon_info .abilities span{
+        width: unset;
+        padding: 0px 4px
+    }
+    
+}
+
+@media(max-width: 800px){
+    .pokedex_results .results li{
+        width: 25%;
+    }
+    ul{
+        padding-left: 10%;
+    }
+}
+
+@media(max-width: 600px){
+    .pokedex_results .results li{
+        width: 28%;
+    }
+}
+
+@media(max-width: 400px){
+    .pokedex_results .results li{
+        width: 40%;
+    }
+}
