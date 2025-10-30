@@ -128,13 +128,24 @@ footer{
     flex-direction: column;
     justify-content: center;
 }
-dialog{
-    position: fixed;
-    margin: auto;
-    width: 600px;
-    height: 900px;
-    padding: 16px;
-    border-radius: 30px;
+.modul-dialog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.modul-content{
+    height: 600px;
+}
+.modal-pokemon-img-container{
+    display: flex;
+    JUSTIFY-CONTENT: center;
+    height: 300px;
+    padding: 8px;
+    border-radius: 8px;
+}
+.modal-pokemon-img{
+    width: 100%;
 }
 dialog::backdrop{
     background-color: rgba(0,0,0,0.6);
