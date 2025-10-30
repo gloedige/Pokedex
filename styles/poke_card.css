@@ -228,17 +228,6 @@
     }
 }
 
-@media(max-width: 700px){
-    .container_header{
-        flex-direction: column;
-        align-items: center;
-        height: 160px;
-    }
-    .container_input_field{
-        height: 40%;
-    }
-}
-
 @media(max-width: 600px){
     .pokedex_results .results li{
         width: 28%;
