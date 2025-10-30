@@ -11,13 +11,13 @@
 }
 @keyframes pulse {
     0% {
-        transform: translateY(0); /* Startposition */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-5px); /* Hälfte der Zeit: 5px nach oben */
+        transform: translateY(-5px);
     }
     100% {
-        transform: translateY(0); /* Ende: Zurück zur Ausgangsposition */
+        transform: translateY(0);
     }
 }
 .pokedex_results .results li{
@@ -26,25 +26,26 @@
     position: relative;
     margin: 1% 2%;
     width: 20%;
-    /* transition: all 0.2s ease-in-out; */
-    /* translate: none; */
 }
-.pokedex_results .results li a {
+.pokedex_results .results li button {
     float: left;
     display: block;
     position: relative;
     width: 100%;
     padding-top: 100%;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    border: none;
 }
-.pokedex_results .results li a img {
+.pokedex_results .results li button img {
     background-color: #F2F2F2;
     float: left;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 8px;
     box-shadow: 5px 5px 15px black;
 }
@@ -56,7 +57,6 @@
     float: left;
     margin-right: -100%;
     width: 100%;
-    /* margin-left: 7%; */
 }
 .pokedex_results .results li .pokemon_info {
     clear: both;
@@ -67,10 +67,10 @@
     font-family: "Flexo-Bold",arial,sans-serif;
     color: #919191;
     font-size: 80%;
-    padding-top: 2px
+    padding-top: 2px;
+    margin-bottom: 0px
 }
 .pokedex_results .results li .pokemon_info .abilities span {
-    font-family: "Flexo-Medium",arial,sans-serif;
     border-radius: 3px;
     line-height: 18px;
     max-width: 110px;
@@ -82,17 +82,13 @@
     text-align: center
 }
 .pokedex_results .results li .pokemon_info h5 {
-    font-family: "Flexo-Demi",arial,sans-serif;
+    font-family: blinker;
+    font-weight: 600;
     color: #313131;
     text-transform: none;
     font-size: 145%;
     margin-bottom: 5px
 }
-
-
-
-
-
 
 .background_color_bug {
     background: linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
