@@ -61,18 +61,12 @@ async function handlePreferences(pokemonId){
 
 async function getPreferencesObj(singlePokemon, pokemonId){
     let preferenceObjVar = {};
-
     let singleSpecies = await fetchSelectedSpecies(pokemonId);
-    let pokemonGenus = getGenusOfSinglePokemon(singleSpecies);
-    let pokemonHeight = singlePokemon.height;
-    let pokemonWeight = singlePokemon.weight;
-    let arrOfAbilities = singlePokemon.abilities;
-    let pokemonAbilityArr = getAbilities(arrOfAbilities);
 
-    preferenceObjVar['genus'] = pokemonGenus;
-    preferenceObjVar['height'] = pokemonHeight;
-    preferenceObjVar['weight'] = pokemonWeight;
-    preferenceObjVar['abilities'] = pokemonAbilityArr;
+    preferenceObjVar['genus'] = getGenusOfSinglePokemon(singleSpecies);
+    preferenceObjVar['height'] = singlePokemon.height;
+    preferenceObjVar['weight'] = singlePokemon.weight;
+    preferenceObjVar['abilities'] = getAbilities(singlePokemon.abilities);
 
     return preferenceObjVar
 }
@@ -95,14 +89,13 @@ function getAbilities(pokemonAbilityArr){
 
 async function handleNameIdImg(pokemonId){ 
     let singlePokemon = await fetchSelectedPokemon(pokemonId);
-    let pokemonName = singlePokemon.name;
     
     let modalPokemonId = pokemonModal.querySelector('.modal-pokemon-id');
     let modalPokemonName = pokemonModal.querySelector('.modal-pokemon-name');
     let modalPokemonImg = pokemonModal.querySelector('.modal-pokemon-img-container');
     
     modalPokemonId.textContent = pokemonId.padStart(4,'0');
-    modalPokemonName.textContent = pokemonName.toUpperCase();
+    modalPokemonName.textContent = singlePokemon.name.toUpperCase();
     modalPokemonImg.innerHTML = `<img src = "${IMG_URL}${pokemonId}.svg" alt="Pokemon image" class="modal-pokemon-img">`;
     
     setBackgroundColorOfImgInModal(singlePokemon);
@@ -148,13 +141,6 @@ function setBackgroundColorOfImgInModal(singlePokemon){
     modalPokemonImg.setAttribute("class", "modal-pokemon-img-container " + classNameBackgroundColor);
 }
 
-
-
-
-
-
-
-
 async function handleFormSubmit(event){
     event.preventDefault();
     let submittedForm = event.target;
@@ -195,13 +181,13 @@ function resetInputField(){
 }
 
 async function initDOMContentEventListener(){
-    await initFormFieldEventListener();
+    initFormFieldEventListener();
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
     hideLoadingSpinner();
     handleModal();
-    await initModalEventListener();
+    initModalEventListener();
 }
 
 async function fetchAllItems(path="") {
