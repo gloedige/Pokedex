@@ -41,7 +41,7 @@ function renderModal(){
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="modal-pokemon-img"></div>
+                            <div class="modal-pokemon-img-container"></div>
                             <h5>Stats</h5>
                             <div class="modal-pokemon-stats"></div>
                             <div class="modal-preferences"></div>
