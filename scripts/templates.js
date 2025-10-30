@@ -47,8 +47,8 @@ function renderModal(){
                             <div class="modal-preferences"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="jumpPokemonBackward()">Previous</button>
-                            <button type="button" class="btn btn-secondary" onclick="jumpPokemonForward()">Next</button>
+                            <button type="button" class="btn btn-secondary jump-button" onclick="jumpPokemonBackward()">Previous</button>
+                            <button type="button" class="btn btn-secondary jump-button" onclick="jumpPokemonForward()">Next</button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function renderModal(){
 
 function renderStatsToModal(statsObj){
     return `
-            <table class="table table-striped-columns table-striped">
+            <table class="table table-striped rounded overflow-hidden">
                 <tr class="pref-name">
                     <td>HP</td>
                     <td>Attack</td>
