@@ -6,16 +6,17 @@ let arrayOfRawItems = [];
 let arrayOfSingleItems = [];
 let filterdArrayOfItems = [];
 
-async function initFormFieldEventListener(){
+function initFormFieldEventListener(){
     let formSearchPokemon = document.getElementById('formSearchPokemon');
     if (formSearchPokemon){
         formSearchPokemon.addEventListener('submit', function(event){
             handleFormSubmit(event);
+            return true;
         })
     };
 }
 
-async function initModalEventListener(){
+function initModalEventListener(){
     let pokemonModal = document.getElementById('pokemonModal');
     
     pokemonModal.addEventListener('show.bs.modal', async (event) => {
@@ -154,7 +155,7 @@ function setBackgroundColorOfImgInModal(singlePokemon){
 
 
 
-function handleFormSubmit(event){
+async function handleFormSubmit(event){
     event.preventDefault();
     let submittedForm = event.target;
     if (!submittedForm){
@@ -162,7 +163,7 @@ function handleFormSubmit(event){
     }
     if (submittedForm.classList.contains('container_input_field')){
         let inputText = document.getElementById('input_field').value;
-        findPokemonByName(inputText);
+        await findPokemonByName(inputText);
     }
 }
 
