@@ -128,31 +128,7 @@ footer{
     flex-direction: column;
     justify-content: center;
 }
-.modal-dialog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-.modal-content{
-    height: 700px;
-    background-image: url(../assets/img/container_bg.png);
-}
-.modal-pokemon-img-container{
-    display: flex;
-    JUSTIFY-CONTENT: center;
-    height: 300px;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    box-shadow: 5px 5px 15px black;
-}
-.modal-pokemon-img{
-    width: 100%;
-}
-dialog::backdrop{
-    background-color: rgba(0,0,0,0.6);
-}
+
 #overlay{
     display: flex;
     justify-content: center;
@@ -192,41 +168,8 @@ dialog::backdrop{
     display: flex;
     justify-content: center;
 }
-.pokemon_modal{
-    position: absolute;
-}
-.pokemon_modal::backdrop{
-    background-color: rgba(0,0,0,0.375);
-}
-.modal-pokemon-id{
-    margin-left: 8px;
-}
-.modal-pokemon-stats{
-    box-shadow: 5px 5px 15px black;
-    border-radius: 8px;
-}
-.modal-preferences{
-    display: flex;
-    background-color: #30A7D7;
-    border-radius: 8px;
-    box-shadow: 5px 5px 15px black;
-}
-.modal-footer{
-    justify-content: space-between;
-}
 .owner_name{
     margin: 0px;
-}
-.pref-table-one{
-    width: 180px;
-}
-.pref-name{
-    font-weight: 600;
-}
-.jump-button{
-    width: 120px;
-    background-color: #30A7D7;
-    box-shadow: 5px 5px 15px black;
 }
 
 @media(max-width: 1050px){
