@@ -128,14 +128,15 @@ footer{
     flex-direction: column;
     justify-content: center;
 }
-.modul-dialog{
+.modal-dialog{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
 }
-.modul-content{
-    height: 600px;
+.modal-content{
+    height: 700px;
+    background-image: url(../assets/img/container_bg.png);
 }
 .modal-pokemon-img-container{
     display: flex;
@@ -143,6 +144,8 @@ footer{
     height: 300px;
     padding: 8px;
     border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 5px 5px 5px grey;
 }
 .modal-pokemon-img{
     width: 100%;
@@ -200,12 +203,21 @@ dialog::backdrop{
 }
 .modal-preferences{
     display: flex;
+    background-color: #30A7D7;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px grey;
 }
 .modal-footer{
     justify-content: space-between;
 }
 .owner_name{
     margin: 0px;
+}
+.pref-table-one{
+    width: 180px;
+}
+.pref-name{
+    font-weight: 600;
 }
 
 @media(max-width: 1050px){

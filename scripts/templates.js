@@ -58,8 +58,8 @@ function renderModal(){
 
 function renderStatsToModal(statsObj){
     return `
-            <table>
-                <tr>
+            <table class="table table-striped-columns table-striped">
+                <tr class="pref-name">
                     <td>HP</td>
                     <td>Attack</td>
                     <td>Defense</td>
@@ -82,24 +82,25 @@ function renderStatsToModal(statsObj){
 
 function renderPreferencesToModal(preferenceObj){
     return  `
-                <table>
+                <table class="pref-table-one">
                     <tr>
-                        <td>Height: </td>
-                        <td>${preferenceObj.height*10} cm</td>
+                        <td class="pref-name">Height: </td>
+                        <td class="td-left">${preferenceObj.height*10} cm</td>
                     </tr>
                     <tr>
-                        <td>Weight: </td>
-                        <td>${preferenceObj.weight/10} kg</td>
+                        <td class="pref-name">Weight: </td>
+                        <td class="td-left">${preferenceObj.weight/10} kg</td>
                     </tr>
+                    
                 </table>
-                <table>
+                <table class="pref-table-two">
                     <tr>
-                        <td>Abilities: </td>
-                        <td>${preferenceObj.abilities}</td>
+                        <td class="pref-name">Abilities: </td>
+                        <td class="td-left">${preferenceObj.abilities}</td>
                     </tr>
                     <tr>
-                        <td>Genus: </td>
-                        <td>${preferenceObj.genus}</td>
+                        <td class="pref-name">Genus: </td>
+                        <td class="td-left">${preferenceObj.genus}</td>
                     </tr>
                 </table>
             `
