@@ -42,7 +42,7 @@ function renderModal(){
                         </div>
                         <div class="modal-body">
                             <div class="modal-pokemon-img-container"></div>
-                            <h5>Stats</h5>
+                            <h5 class="headline_stats">Stats</h5>
                             <div class="modal-pokemon-stats"></div>
                             <div class="modal-preferences"></div>
                         </div>
