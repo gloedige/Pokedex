@@ -6,6 +6,7 @@
 }
 .modal-content{
     height: 90vh;
+    max-height: 700px;
     background-image: url(../assets/img/container_bg.png);
 }
 .modal-pokemon-img-container{
