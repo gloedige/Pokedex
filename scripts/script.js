@@ -81,8 +81,12 @@ function getGenusOfSinglePokemon(singleSpecies){
 
 function getAbilities(pokemonAbilityArr){
     let arrOfAbilities = [];
+    let numOfAbilities = 0
     for (const ability of pokemonAbilityArr) {
-        arrOfAbilities.push(ability.ability.name)
+        numOfAbilities++;
+        if (numOfAbilities < 3){
+            arrOfAbilities.push(ability.ability.name)
+        }
     }
     return arrOfAbilities
 }
