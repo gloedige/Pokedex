@@ -210,6 +210,16 @@ footer{
     header{
         height: 64px;
     }
+    .container_footer{
+        height: 64px;
+        gap: 16px;
+    }
+    footer{
+        height: 64px;
+    }
+    .loader{
+        width: 200px;
+    }
 }
 @media(max-width: 400px){
     .submit_btn{
@@ -222,6 +232,12 @@ footer{
         height: 54px;
     }
     header{
+        height: 54px;
+    }
+     .container_footer{
+        height: 54px;
+    }
+    footer{
         height: 54px;
     }
 }
