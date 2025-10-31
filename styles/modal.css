@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    /* height: 90vh; */
 }
 .modal-content{
     height: 700px;
@@ -49,4 +49,18 @@ dialog::backdrop{
     width: 120px;
     background-color: #30A7D7;
     box-shadow: 5px 5px 15px black;
+}
+@media(max-width: 600px){
+    .modal-content{
+        /* height: 600px; */
+    }
+    .modal-dialog{
+        /* align-items: unset; */
+    }
+    .modal-pokemon-img-container {
+        height: 200px;
+    }
+    .text-order{
+        writing-mode: vertical-lr;
+    }
 }

@@ -60,12 +60,12 @@ function renderStatsToModal(statsObj){
     return `
             <table class="table table-striped rounded overflow-hidden">
                 <tr class="pref-name">
-                    <td>HP</td>
-                    <td>Attack</td>
-                    <td>Defense</td>
-                    <td>Special-Attack</td>
-                    <td>Special-Defense</td>
-                    <td>Speed</td>
+                    <td class="text-order">HP</td>
+                    <td class="text-order">Attack</td>
+                    <td class="text-order">Defense</td>
+                    <td class="text-order">Special-Attack</td>
+                    <td class="text-order">Special-Defense</td>
+                    <td class="text-order">Speed</td>
                 </tr>
                 <tr>
                     <td>${(statsObj.hp)}</td>

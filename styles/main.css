@@ -220,6 +220,8 @@ footer{
     .loader{
         width: 200px;
     }
+    
+
 }
 @media(max-width: 400px){
     .submit_btn{
