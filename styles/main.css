@@ -23,7 +23,7 @@ main{
 }
 .main_wrapper_impressum{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 160px);
     display: flex;
     margin: 0 auto;
     padding: 100px;
@@ -40,7 +40,7 @@ header{
     top: 0px;
     z-index: 1000;
 }
-.container_header{
+.container_header, .container_header_impressum{
     margin: 0 auto;
     max-width: 1440px;
     height: 80px;
@@ -92,7 +92,7 @@ footer{
     height: 64px;
     margin: 0px 16px;
 }
-.container_icon{
+.container_icon, .container_icon_impressum{
     display: flex;
     align-items: center;
 }
@@ -220,7 +220,14 @@ footer{
     .loader{
         width: 200px;
     }
-    
+    .headline{
+        font-size: 40px;
+    }
+    .container_impressum{
+        font-size: 14px;
+        width: 320px;
+
+    }
 
 }
 @media(max-width: 400px){
