@@ -5,7 +5,8 @@
     height: 90vh;
 }
 .modal-content{
-    height: 700px;
+    height: 90vh;
+    max-height: 700px;
     background-image: url(../assets/img/container_bg.png);
 }
 .modal-pokemon-img-container{
@@ -30,6 +31,9 @@ dialog::backdrop{
     box-shadow: 5px 5px 15px black;
     border-radius: 8px;
 }
+.headline_stats{
+    margin: 0px 0%;
+}
 .modal-preferences{
     display: flex;
     background-color: #30A7D7;
@@ -49,4 +53,57 @@ dialog::backdrop{
     width: 120px;
     background-color: #30A7D7;
     box-shadow: 5px 5px 15px black;
+}
+@media(max-width: 600px) {
+    .modal-header, .modal-body{
+        padding: 4px 16px;
+    }
+    .modal-dialog{
+        width: 90vw;
+    }
+    .modal-pokemon-img-container {
+        margin: 0px 3%;
+        margin-bottom: 4px;
+    }
+    .modal-pokemon-stats{
+        margin-top: 4px;
+        margin: 0px 3%;
+    }
+    .modal-preferences{
+        margin: 0px 3%;
+    }
+    .text-order{
+        writing-mode: vertical-lr;
+    }
+    .modal{
+        margin: 1rem;
+    }
+    .headline_stats{
+        margin: 0px 3%;
+    }
+}
+@media (max-width: 600px), (max-height: 800px){
+    .modal-pokemon-img-container {
+        height: 35vh;
+        max-height: 250px;
+    }
+    table{
+        font-size: 14px;
+    }
+}
+
+
+@media(max-width: 500px), (max-height: 700px){
+    .modal-pokemon-stats{
+        margin: 0px 3%;
+    }
+    .modal-pokemon-img-container {
+        height: 25vh;
+    }
+    .modal-preferences{
+        flex-direction: column;
+    }
+    table{
+        font-size: 12px;
+    }
 }

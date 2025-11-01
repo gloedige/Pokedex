@@ -171,9 +171,20 @@ footer{
 .owner_name{
     margin: 0px;
 }
+.icon_header{
+    max-width: 100%
+}
 
 @media(max-width: 1050px){
    
+}
+@media(max-width: 700px){
+    .container_icon{
+        display: none;
+    }
+    .container_header{
+        justify-content: end;
+    }
 }
 @media(min-width: 601px){
        dialog{
@@ -186,5 +197,49 @@ footer{
     }
     .main_wrapper{
         width:100%;
+    }
+    .submit_btn{
+        width: 50px;
+    }
+    .container_input_field{
+        height: 50px;
+    }
+    .container_header{
+        height: 64px;
+    }
+    header{
+        height: 64px;
+    }
+    .container_footer{
+        height: 64px;
+        gap: 16px;
+    }
+    footer{
+        height: 64px;
+    }
+    .loader{
+        width: 200px;
+    }
+    
+
+}
+@media(max-width: 400px){
+    .submit_btn{
+        width: 40px;
+    }
+    .container_input_field{
+        height: 40px;
+    }
+    .container_header{
+        height: 54px;
+    }
+    header{
+        height: 54px;
+    }
+     .container_footer{
+        height: 54px;
+    }
+    footer{
+        height: 54px;
     }
 }
