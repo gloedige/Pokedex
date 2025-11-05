@@ -7,10 +7,12 @@ let arrayOfSingleItems = [];
 let filterdArrayOfItems = [];
 
 function initFormFieldEventListener(){
-    let formSearchPokemon = document.getElementById('formSearchPokemon');
-    if (formSearchPokemon){
-        formSearchPokemon.addEventListener('submit', function(event){
-            handleFormSubmit(event);
+    let searchInput = document.getElementById('input_field');
+    if (searchInput){
+        searchInput.addEventListener('input', function(event){
+            let searchTerm = event.target.value.toLowerCase();
+            event.preventDefault();            
+            handleFormSubmit(searchTerm);
             return true;
         })
     };
@@ -145,15 +147,15 @@ function setBackgroundColorOfImgInModal(singlePokemon){
     modalPokemonImg.setAttribute("class", "modal-pokemon-img-container " + classNameBackgroundColor);
 }
 
-async function handleFormSubmit(event){
-    event.preventDefault();
-    let submittedForm = event.target;
-    if (!submittedForm){
+async function handleFormSubmit(searchTerm){
+    if (!searchTerm){
         return;
     }
-    if (submittedForm.classList.contains('container_input_field')){
-        let inputText = document.getElementById('input_field').value;
-        await findPokemonByName(inputText);
+    if (searchTerm.length > 2){
+        await findPokemonByName(searchTerm);
+    }
+    else{
+        reloadLastView();
     }
 }
 
@@ -174,7 +176,6 @@ async function findPokemonByName(inputText){
 }
 
 async function reloadLastView(){
-    resetInputField();
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
