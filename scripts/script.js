@@ -254,7 +254,8 @@ function setAllElementsOfType(singlePokemon){
     let typeKeyArrays = Object.keys(singlePokemon.types);    
     for (let index = 0; index < typeKeyArrays.length; index++) {
         let type = singlePokemon.types[index].type;
-        singlePokemonRef.innerHTML += renderTypes(type);
+        
+        singlePokemonRef.innerHTML += renderTypes(type, index+1);
         if (index == 0){
             setBackgroundColorOfType(type, singlePokemon.id);
         }

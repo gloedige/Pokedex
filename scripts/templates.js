@@ -20,9 +20,9 @@ function renderSinglePokemon(singlePokemon){
             `
 }
 
-function renderTypes(type){
+function renderTypes(type, index){
     return  `
-            <div class="abilities">
+            <div class="abilities type-number-${index}">
                 <span class="pill background_color_${type.name}">${type.name}</span>
             </div>
             `
