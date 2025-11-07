@@ -108,40 +108,56 @@ async function handleNameIdImg(pokemonId){
     setBackgroundColorOfImgInModal(singlePokemon);
 }
 async function jumpPokemonForward(){
-    let idCurrentPokemon = getIdCurrentPokemon();
     resetDisabledButton('button_previous');
+    let arrayToJump = getArrayToRender();
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
     
-    if (idCurrentPokemon == arrayOfRawItems.length){
+    
+    if (indexOfCurrentPokemon == arrayToJump.length -1 ){
         return
     }
-    else if (idCurrentPokemon == arrayOfRawItems.length - 1){
-        pokemonId = idCurrentPokemon + 1;
+    else if (indexOfCurrentPokemon == arrayToJump.length - 2){
+        pokemonId = arrayToJump[indexOfCurrentPokemon + 1].id;
         document.getElementById('button_next').disabled = true;
     }
     else{
-        pokemonId = idCurrentPokemon + 1;
+        pokemonId = arrayToJump[indexOfCurrentPokemon + 1].id;
     }
     renderPokemonToModal(String(pokemonId));
 }
 
 async function jumpPokemonBackward(){
-    let idCurrentPokemon = getIdCurrentPokemon();
+    let arrayToJump = getArrayToRender();
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
     resetDisabledButton('button_next');
     
-    if(idCurrentPokemon == 1){
+    if(indexOfCurrentPokemon == 0){
         return
     }
-    else if (idCurrentPokemon == 2){
-        pokemonId = idCurrentPokemon - 1;
+    else if (indexOfCurrentPokemon == 1){
+        pokemonId = arrayToJump[indexOfCurrentPokemon - 1].id;        
         document.getElementById('button_previous').disabled = true;
     }
     else{
-        pokemonId = idCurrentPokemon - 1;
+        pokemonId = arrayToJump[indexOfCurrentPokemon - 1].id;
     }
     renderPokemonToModal(String(pokemonId)); 
 }
 
-function getIdCurrentPokemon(){
+function getPosInArrayOfCurrentPokemon(arrayToMove){
+    let idCurrentPokemon = getIdCurrentPokemon();
+
+    for (let index = 0; index < arrayToMove.length; index++) {
+        if (arrayToMove[index].id == idCurrentPokemon){       
+            return index
+        }
+        else{
+            continue
+        }        
+    }
+}
+
+function  getIdCurrentPokemon() {
     let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
     let idCurrentPokemonString = idContainer.innerHTML;
     let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
@@ -174,6 +190,9 @@ async function handleFormSubmit(searchTerm){
 }
 
 async function findPokemonByName(inputText){
+    filterdArrayOfItems = [];
+    filterdArrayOfSingleItems = [];
+
     arrayOfRawItems.forEach((item) => {        
         if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
             filterdArrayOfItems.push(item);
@@ -184,8 +203,6 @@ async function findPokemonByName(inputText){
         getFilteredArrayOfSingleItems(filterdArrayOfItems);
         await renderAllPokemons();
     }
-    filterdArrayOfItems = [];
-    filterdArrayOfSingleItems = [];
 }
 
 function getFilteredArrayOfSingleItems(filterdArrayOfItems){
