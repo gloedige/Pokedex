@@ -181,10 +181,11 @@ async function findPokemonByName(inputText){
     });
     if (filterdArrayOfItems != []){
         arrayOfRawItems = filterdArrayOfItems;
-        getFilteredArrayOfSingleItems(filterdArrayOfItems); // hier weiter!!!
+        getFilteredArrayOfSingleItems(filterdArrayOfItems);
         await renderAllPokemons();
     }
     filterdArrayOfItems = [];
+    filterdArrayOfSingleItems = [];
 }
 
 function getFilteredArrayOfSingleItems(filterdArrayOfItems){
@@ -265,8 +266,9 @@ async function getSingleItemsFromApi() {
 async function renderAllPokemons(){
     let allPokemonsRef = document.getElementById('container_pokemons');
     clearContainerPokemons(allPokemonsRef);
+    let arrayToRender = getArrayToRender();
 
-    for (let itemObject of arrayOfSingleItems){
+    for (let itemObject of arrayToRender){
         allPokemonsRef.innerHTML += renderSinglePokemon(itemObject)
         setAllElementsOfType(itemObject);
     }
@@ -274,6 +276,18 @@ async function renderAllPokemons(){
 
 function clearContainerPokemons(allPokemonsRef){
     allPokemonsRef.innerHTML = '';
+}
+
+function getArrayToRender(){
+    let arrayToRender = [];
+
+    if (filterdArrayOfSingleItems.length > 0){        
+        arrayToRender = filterdArrayOfSingleItems;
+    }
+    else {
+        arrayToRender = arrayOfSingleItems;
+    }
+    return arrayToRender
 }
 
 function setAllElementsOfType(singlePokemon){
