@@ -5,6 +5,7 @@ let limit = 20;
 let arrayOfRawItems = [];
 let arrayOfSingleItems = [];
 let filterdArrayOfItems = [];
+let filterdArrayOfSingleItems = [];
 
 function initFormFieldEventListener(){
     let searchInput = document.getElementById('input_field');
@@ -180,10 +181,25 @@ async function findPokemonByName(inputText){
     });
     if (filterdArrayOfItems != []){
         arrayOfRawItems = filterdArrayOfItems;
-        await getSingleItemsFromApi();
+        getFilteredArrayOfSingleItems(filterdArrayOfItems); // hier weiter!!!
         await renderAllPokemons();
     }
     filterdArrayOfItems = [];
+}
+
+function getFilteredArrayOfSingleItems(filterdArrayOfItems){
+    filterdArrayOfItems.forEach(element => {
+        let id = getIdFromURL(element.url);
+        arrayOfSingleItems.forEach(element => {
+            if (element.id == id){
+                filterdArrayOfSingleItems.push(element);
+            }
+        });
+    });
+}
+
+function getIdFromURL(url){
+    return url.charAt(url.length-2);
 }
 
 async function reloadLastView(){
