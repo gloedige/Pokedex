@@ -199,7 +199,6 @@ async function findPokemonByName(inputText){
         }
     });
     if (filterdArrayOfItems != []){
-        arrayOfRawItems = filterdArrayOfItems;
         getFilteredArrayOfSingleItems(filterdArrayOfItems);
         await renderAllPokemons();
     }
@@ -217,7 +216,10 @@ function getFilteredArrayOfSingleItems(filterdArrayOfItems){
 }
 
 function getIdFromURL(url){
-    return url.charAt(url.length-2);
+    let cleanedUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+    let parts = cleanedUrl.split('/');
+    let numberString = parts[parts.length - 1];
+    return parseInt(numberString, 10);
 }
 
 async function reloadLastView(){
