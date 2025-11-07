@@ -34,6 +34,7 @@ function renderPokemonToModal(pokemonId) {
     handleStats(pokemonId);
     handleNameIdImg(pokemonId);
     handlePreferences(pokemonId);
+    disableNavButtonWhenFirstOrLastItem(pokemonId);
 }
 
 async function handleStats(pokemonId){
@@ -94,6 +95,18 @@ function getAbilities(pokemonAbilityArr){
     return arrOfAbilities
 }
 
+function disableNavButtonWhenFirstOrLastItem(pokemonId){
+    let arrayToJump = getArrayToRender();
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump, pokemonId);
+
+    if (indexOfCurrentPokemon == 0){
+        document.getElementById('button_previous').disabled = true;
+    }
+    if (indexOfCurrentPokemon == arrayToJump.length - 1){
+        document.getElementById('button_next').disabled = true;
+    }
+}
+
 async function handleNameIdImg(pokemonId){ 
     let singlePokemon = await fetchSelectedPokemon(pokemonId);
     
@@ -110,7 +123,7 @@ async function handleNameIdImg(pokemonId){
 async function jumpPokemonForward(){
     resetDisabledButton('button_previous');
     let arrayToJump = getArrayToRender();
-    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump, id=-1);
     
     
     if (indexOfCurrentPokemon == arrayToJump.length -1 ){
@@ -128,7 +141,7 @@ async function jumpPokemonForward(){
 
 async function jumpPokemonBackward(){
     let arrayToJump = getArrayToRender();
-    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump, id=-1);
     resetDisabledButton('button_next');
     
     if(indexOfCurrentPokemon == 0){
@@ -144,8 +157,14 @@ async function jumpPokemonBackward(){
     renderPokemonToModal(String(pokemonId)); 
 }
 
-function getPosInArrayOfCurrentPokemon(arrayToMove){
-    let idCurrentPokemon = getIdCurrentPokemon();
+function getPosInArrayOfCurrentPokemon(arrayToMove, id){
+    let idCurrentPokemon = 0;
+    if (id == -1){
+        idCurrentPokemon = getIdCurrentPokemon();
+    }
+    else {
+        idCurrentPokemon = id;
+    }
 
     for (let index = 0; index < arrayToMove.length; index++) {
         if (arrayToMove[index].id == idCurrentPokemon){       
