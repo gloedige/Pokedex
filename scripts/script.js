@@ -108,10 +108,7 @@ async function handleNameIdImg(pokemonId){
 }
 async function jumpPokemonForward(){
     let idCurrentPokemon = getIdCurrentPokemon();
-
-    if (document.getElementById('button_previous').disabled = true){
-        document.getElementById('button_previous').disabled = false;
-    }
+    resetDisabledButton('button_previous');
     
     if (idCurrentPokemon == arrayOfRawItems.length){
         return
@@ -123,16 +120,12 @@ async function jumpPokemonForward(){
     else{
         pokemonId = idCurrentPokemon + 1;
     }
-    let pokemonIdString = String(pokemonId);
-    renderPokemonToModal(pokemonIdString);
+    renderPokemonToModal(String(pokemonId));
 }
 
 async function jumpPokemonBackward(){
     let idCurrentPokemon = getIdCurrentPokemon();
-
-    if (document.getElementById('button_next').disabled = true){
-        document.getElementById('button_next').disabled = false;
-    }
+    resetDisabledButton('button_next');
     
     if(idCurrentPokemon == 1){
         return
@@ -144,8 +137,7 @@ async function jumpPokemonBackward(){
     else{
         pokemonId = idCurrentPokemon - 1;
     }
-    let pokemonIdString = String(pokemonId);
-    renderPokemonToModal(pokemonIdString); 
+    renderPokemonToModal(String(pokemonId)); 
 }
 
 function getIdCurrentPokemon(){
@@ -153,6 +145,12 @@ function getIdCurrentPokemon(){
     let idCurrentPokemonString = idContainer.innerHTML;
     let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
     return idCurrentPokemon
+}
+
+function resetDisabledButton(buttonId){
+     if (document.getElementById(buttonId).disabled = true){
+        document.getElementById(buttonId).disabled = false;
+    }
 }
 
 function setBackgroundColorOfImgInModal(singlePokemon){
