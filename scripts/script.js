@@ -106,15 +106,9 @@ async function handleNameIdImg(pokemonId){
     
     setBackgroundColorOfImgInModal(singlePokemon);
 }
-
-
-
-
 async function jumpPokemonForward(){
-    let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
-    let idCurrentPokemonString = idContainer.innerHTML;
-    let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
-    
+    let idCurrentPokemon = getIdCurrentPokemon();
+
     if (document.getElementById('button_previous').disabled = true){
         document.getElementById('button_previous').disabled = false;
     }
@@ -134,9 +128,7 @@ async function jumpPokemonForward(){
 }
 
 async function jumpPokemonBackward(){
-    let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
-    let idCurrentPokemonString = idContainer.innerHTML;
-    let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
+    let idCurrentPokemon = getIdCurrentPokemon();
 
     if (document.getElementById('button_next').disabled = true){
         document.getElementById('button_next').disabled = false;
@@ -154,6 +146,13 @@ async function jumpPokemonBackward(){
     }
     let pokemonIdString = String(pokemonId);
     renderPokemonToModal(pokemonIdString); 
+}
+
+function getIdCurrentPokemon(){
+    let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
+    let idCurrentPokemonString = idContainer.innerHTML;
+    let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
+    return idCurrentPokemon
 }
 
 function setBackgroundColorOfImgInModal(singlePokemon){
