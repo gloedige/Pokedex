@@ -115,8 +115,16 @@ async function jumpPokemonForward(){
     let idCurrentPokemonString = idContainer.innerHTML;
     let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
     
-    if(idCurrentPokemon == 1328){
-        pokemonId = idCurrentPokemon;
+    if (document.getElementById('button_previous').disabled = true){
+        document.getElementById('button_previous').disabled = false;
+    }
+    
+    if (idCurrentPokemon == arrayOfRawItems.length){
+        return
+    }
+    else if (idCurrentPokemon == arrayOfRawItems.length - 1){
+        pokemonId = idCurrentPokemon + 1;
+        document.getElementById('button_next').disabled = true;
     }
     else{
         pokemonId = idCurrentPokemon + 1;
@@ -129,9 +137,17 @@ async function jumpPokemonBackward(){
     let idContainer = pokemonModal.querySelector('.modal-pokemon-id');
     let idCurrentPokemonString = idContainer.innerHTML;
     let idCurrentPokemon = parseInt(idCurrentPokemonString.replace(/^0+/, ''));
+
+    if (document.getElementById('button_next').disabled = true){
+        document.getElementById('button_next').disabled = false;
+    }
     
     if(idCurrentPokemon == 1){
-        pokemonId = idCurrentPokemon;
+        return
+    }
+    else if (idCurrentPokemon == 2){
+        pokemonId = idCurrentPokemon - 1;
+        document.getElementById('button_previous').disabled = true;
     }
     else{
         pokemonId = idCurrentPokemon - 1;
@@ -160,10 +176,8 @@ async function handleFormSubmit(searchTerm){
 }
 
 async function findPokemonByName(inputText){
-    let count = 0;
     arrayOfRawItems.forEach((item) => {        
         if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
-            count++;
             filterdArrayOfItems.push(item);
         }
     });
@@ -232,7 +246,7 @@ async function getSingleItemsFromApi() {
     for (let itemObject of arrayOfRawItems){
         let singlePokemon = await fetchSingleItem(itemObject);
         arrayOfSingleItems.push(singlePokemon) ;
-    }
+    }    
 }
 
 async function renderAllPokemons(){
