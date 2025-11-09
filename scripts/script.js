@@ -1,6 +1,6 @@
 const BASE_SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species";
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-const OFFSET = 0;
+let offset = 0;
 let limit = 20;
 let arrayOfRawItems = [];
 let arrayOfSingleItems = [];
@@ -289,17 +289,21 @@ async function fetchSelectedSpecies(pokemonId) {
 }
 
 async function getItemsFromApi(){
-    let path = "?offset="+OFFSET+"0&limit="+limit;
-    arrayOfRawItems = await fetchAllItems(path);
+    let path = "?limit=" + limit + "&offset=" + offset;
+    let arrayOfRawItemsTmp = await fetchAllItems(path);
+    arrayOfRawItemsTmp.forEach(element => {
+        arrayOfRawItems.push(element);
+    });
     storeArrayOfItemObjectsToLocalStorage(arrayOfRawItems);
 }
 
 async function getSingleItemsFromApi() {
-    arrayOfSingleItems = [];
-    for (let itemObject of arrayOfRawItems){
-        let singlePokemon = await fetchSingleItem(itemObject);
-        arrayOfSingleItems.push(singlePokemon) ;
-    }    
+    let startIndex = offset;
+    let endIndex = offset + limit;
+    for (let index = startIndex; index < endIndex; index++) {      
+        let singlePokemon = await fetchSingleItem(arrayOfRawItems[index]);
+        arrayOfSingleItems.push(singlePokemon) ;   
+    }   
 }
 
 async function renderAllPokemons(){
@@ -356,7 +360,8 @@ function hideLoadingSpinner(){
 }
 
 async function loadmore(){
-    limit = limit + 20;
+    limit = 20;
+    offset = offset + 20;
     showLoadingSpinner();
     await getItemsFromApi();
     await getSingleItemsFromApi();
