@@ -25,8 +25,7 @@ function initModalEventListener(){
     pokemonModal.addEventListener('show.bs.modal', async (event) => {
         let button = event.relatedTarget;
         let pokemonId = button.dataset.pokemonId;
-        
-       renderPokemonToModal(pokemonId);
+        renderPokemonToModal(pokemonId);
     });
 }
 
@@ -34,6 +33,8 @@ function renderPokemonToModal(pokemonId) {
     handleStats(pokemonId);
     handleNameIdImg(pokemonId);
     handlePreferences(pokemonId);
+    resetDisabledButton('button_next');
+    resetDisabledButton('button_previous');
     disableNavButtonWhenFirstOrLastItem(pokemonId);
 }
 
