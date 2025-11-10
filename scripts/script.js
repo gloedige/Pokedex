@@ -209,31 +209,33 @@ function setBackgroundColorOfImgInModal(singlePokemon){
     modalPokemonImg.setAttribute("class", "modal-pokemon-img-container " + classNameBackgroundColor);
 }
 
-async function handleInputSubmit(searchTerm){
-    if (!searchTerm){
-        return;
-    }
-    if (searchTerm.length > 2){
-        await findPokemonByName(searchTerm);
-    }
-    else{
-        renderAllPokemons();
-    }
-}
-
-async function findPokemonByName(inputText){
+async function handleInputSubmit(inputText){
     filterdArrayOfItems = [];
     filterdArrayOfSingleItems = [];
 
-    arrayOfRawItems.forEach((item) => {        
-        if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
-            filterdArrayOfItems.push(item);            
+    if (inputText.length > 2){
+        filterdArrayOfItems = findPokemonByName(inputText);
+        if (filterdArrayOfItems.length != 0){
+            getFilteredArrayOfSingleItems(filterdArrayOfItems);
+            renderAllPokemons();
         }
-    });
-    if (filterdArrayOfItems != []){
-        getFilteredArrayOfSingleItems(filterdArrayOfItems);
+        else{
+            document.getElementById('container_pokemons').innerHTML = "";
+        } 
+    }
+    else {
         renderAllPokemons();
     }
+    
+}
+
+function findPokemonByName(inputText){
+    arrayOfRawItems.forEach((item) => {        
+        if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
+            filterdArrayOfItems.push(item);   
+        }
+    });
+    return filterdArrayOfItems
 }
 
 function getFilteredArrayOfSingleItems(filterdArrayOfItems){
