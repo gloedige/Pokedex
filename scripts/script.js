@@ -7,16 +7,23 @@ let arrayOfSingleItems = [];
 let filterdArrayOfItems = [];
 let filterdArrayOfSingleItems = [];
 
-function initFormFieldEventListener(){
+function initInputFieldEventListener(){
     let searchInput = document.getElementById('input_field');
+    let debounceTimer;
     if (searchInput){
         searchInput.addEventListener('input', function(event){
-            let searchTerm = event.target.value.toLowerCase();
-            event.preventDefault();            
-            handleFormSubmit(searchTerm);
-            return true;
-        })
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                handleTermOfInput(event);
+            },500);
+        });
     };
+}
+
+function handleTermOfInput(event){
+    let searchTerm = event.target.value.toLowerCase();
+    event.preventDefault();            
+    handleFormSubmit(searchTerm);
 }
 
 function initModalEventListener(){
@@ -220,7 +227,7 @@ async function findPokemonByName(inputText){
 
     arrayOfRawItems.forEach((item) => {        
         if(item.name.substring(0, inputText.length).toLowerCase() == inputText.toLowerCase()){
-            filterdArrayOfItems.push(item);
+            filterdArrayOfItems.push(item);            
         }
     });
     if (filterdArrayOfItems != []){
@@ -258,7 +265,7 @@ function resetInputField(){
 }
 
 async function initDOMContentEventListener(){
-    initFormFieldEventListener();
+    initInputFieldEventListener();
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
