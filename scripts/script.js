@@ -124,7 +124,7 @@ async function handleNameIdImg(pokemonId){
 async function jumpPokemonForward(){
     resetDisabledButton('button_previous');
     let arrayToJump = getArrayToRender();
-    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump, id=-1);
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
     
     
     if (indexOfCurrentPokemon == arrayToJump.length -1 ){
@@ -142,7 +142,7 @@ async function jumpPokemonForward(){
 
 async function jumpPokemonBackward(){
     let arrayToJump = getArrayToRender();
-    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump, id=-1);
+    let indexOfCurrentPokemon = getPosInArrayOfCurrentPokemon(arrayToJump);
     resetDisabledButton('button_next');
     
     if(indexOfCurrentPokemon == 0){
@@ -159,14 +159,8 @@ async function jumpPokemonBackward(){
 }
 
 function getPosInArrayOfCurrentPokemon(arrayToMove, id){
-    let idCurrentPokemon = 0;
-    if (id == -1){
-        idCurrentPokemon = getIdCurrentPokemon();
-    }
-    else {
-        idCurrentPokemon = id;
-    }
-
+    let idCurrentPokemon = assignIdIfNotAvailable(id);
+    
     for (let index = 0; index < arrayToMove.length; index++) {
         if (arrayToMove[index].id == idCurrentPokemon){       
             return index
@@ -175,6 +169,17 @@ function getPosInArrayOfCurrentPokemon(arrayToMove, id){
             continue
         }        
     }
+}
+
+function assignIdIfNotAvailable(id = null){
+    let idCurrentPokemon;
+    if (id === null){
+        idCurrentPokemon = getIdCurrentPokemon();
+    }
+    else {
+        idCurrentPokemon = id;
+    }
+    return idCurrentPokemon
 }
 
 function  getIdCurrentPokemon() {
