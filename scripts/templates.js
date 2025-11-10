@@ -20,9 +20,9 @@ function renderSinglePokemon(singlePokemon){
             `
 }
 
-function renderTypes(type){
+function renderTypes(type, index){
     return  `
-            <div class="abilities">
+            <div class="abilities type-number-${index}">
                 <span class="pill background_color_${type.name}">${type.name}</span>
             </div>
             `
@@ -47,8 +47,8 @@ function renderModal(){
                             <div class="modal-preferences"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary jump-button" onclick="jumpPokemonBackward()">Previous</button>
-                            <button type="button" class="btn btn-secondary jump-button" onclick="jumpPokemonForward()">Next</button>
+                            <button type="button" id="button_previous" class="btn btn-secondary jump-button" onclick="jumpPokemonBackward()">Previous</button>
+                            <button type="button" id="button_next" class="btn btn-secondary jump-button" onclick="jumpPokemonForward()">Next</button>
                         </div>
                     </div>
                 </div>
