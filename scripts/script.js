@@ -23,7 +23,7 @@ function initInputFieldEventListener(){
 function handleTermOfInput(event){
     let searchTerm = event.target.value.toLowerCase();
     event.preventDefault();            
-    handleFormSubmit(searchTerm);
+    handleInputSubmit(searchTerm);
 }
 
 function initModalEventListener(){
@@ -209,7 +209,7 @@ function setBackgroundColorOfImgInModal(singlePokemon){
     modalPokemonImg.setAttribute("class", "modal-pokemon-img-container " + classNameBackgroundColor);
 }
 
-async function handleFormSubmit(searchTerm){
+async function handleInputSubmit(searchTerm){
     if (!searchTerm){
         return;
     }
@@ -217,7 +217,7 @@ async function handleFormSubmit(searchTerm){
         await findPokemonByName(searchTerm);
     }
     else{
-        reloadLastView();
+        renderAllPokemons();
     }
 }
 
@@ -232,7 +232,7 @@ async function findPokemonByName(inputText){
     });
     if (filterdArrayOfItems != []){
         getFilteredArrayOfSingleItems(filterdArrayOfItems);
-        await renderAllPokemons();
+        renderAllPokemons();
     }
 }
 
@@ -254,12 +254,6 @@ function getIdFromURL(url){
     return parseInt(numberString, 10);
 }
 
-async function reloadLastView(){
-    await getItemsFromApi();
-    await getSingleItemsFromApi();
-    await renderAllPokemons();
-}
-
 function resetInputField(){
     document.getElementById('formSearchPokemon').reset();
 }
@@ -268,7 +262,7 @@ async function initDOMContentEventListener(){
     initInputFieldEventListener();
     await getItemsFromApi();
     await getSingleItemsFromApi();
-    await renderAllPokemons();
+    renderAllPokemons();
     showHideLoadingSpinner();
     handleModal();
     initModalEventListener();
@@ -318,7 +312,7 @@ async function getSingleItemsFromApi() {
     }   
 }
 
-async function renderAllPokemons(){
+function renderAllPokemons(){
     let allPokemonsRef = document.getElementById('container_pokemons');
     clearContainerPokemons(allPokemonsRef);
     let arrayToRender = getArrayToRender();
@@ -373,7 +367,7 @@ async function loadmore(){
     showHideLoadingSpinner();
     await getItemsFromApi();
     await getSingleItemsFromApi();
-    await renderAllPokemons();
+    renderAllPokemons();
     showHideLoadingSpinner();
 }
 
