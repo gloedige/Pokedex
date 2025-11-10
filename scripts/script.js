@@ -257,7 +257,7 @@ async function initDOMContentEventListener(){
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
-    hideLoadingSpinner();
+    showHideLoadingSpinner();
     handleModal();
     initModalEventListener();
 }
@@ -351,22 +351,18 @@ function setBackgroundColorOfType(type, id){
     imgRef.classList.add("background_color_"+type.name);
 }
 
-function showLoadingSpinner(){
-    document.getElementById('overlay').classList.remove('d_none');
-}
-
-function hideLoadingSpinner(){
-    document.getElementById('overlay').classList.add('d_none');
+function showHideLoadingSpinner(){
+    document.getElementById('overlay').classList.toggle('d_none');
 }
 
 async function loadmore(){
     limit = 20;
     offset = offset + 20;
-    showLoadingSpinner();
+    showHideLoadingSpinner();
     await getItemsFromApi();
     await getSingleItemsFromApi();
     await renderAllPokemons();
-    hideLoadingSpinner();
+    showHideLoadingSpinner();
 }
 
 function storeArrayOfItemObjectsToLocalStorage(arrayOfItemObjects){
