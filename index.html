@@ -20,17 +20,17 @@
                     <img src="./assets/icons/pokeball.png" alt="pokeball icon" class="pokeball_icon">
                     <h1>Pokédex</h1>
                 </div>
-                <form class="container_input_field" id="formSearchPokemon">
+                <div class="container_input_field">
                     <input 
                         type="text" 
                         placeholder="Find your Pokemon..." 
                         class="input_field" 
                         id="input_field" 
                         onfocus="this.value=''">
-                    <button class="submit_btn" onclick="reloadLastView(); resetInputField()">
+                    <button class="submit_btn" onclick="resetInputField(); renderAllPokemons()">
                         <img src="./assets/icons/refresh_40dp_FFFFFF.svg" alt="find button" class="icon_header">
                     </button>
-                </form>
+                </div>
             </div>
         </header>
         <main>

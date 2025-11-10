@@ -255,7 +255,8 @@ function getIdFromURL(url){
 }
 
 function resetInputField(){
-    document.getElementById('formSearchPokemon').reset();
+    document.getElementById('input_field').value = "";
+    filterdArrayOfSingleItems = [];
 }
 
 async function initDOMContentEventListener(){
@@ -312,10 +313,10 @@ async function getSingleItemsFromApi() {
     }   
 }
 
-function renderAllPokemons(){
+function renderAllPokemons(){   
     let allPokemonsRef = document.getElementById('container_pokemons');
     clearContainerPokemons(allPokemonsRef);
-    let arrayToRender = getArrayToRender();
+    let arrayToRender = getArrayToRender();    
 
     for (let itemObject of arrayToRender){
         allPokemonsRef.innerHTML += renderSinglePokemon(itemObject)
@@ -331,7 +332,7 @@ function getArrayToRender(){
     let arrayToRender = [];
 
     if (filterdArrayOfSingleItems.length > 0){        
-        arrayToRender = filterdArrayOfSingleItems;
+        arrayToRender = filterdArrayOfSingleItems;        
     }
     else {
         arrayToRender = arrayOfSingleItems;
