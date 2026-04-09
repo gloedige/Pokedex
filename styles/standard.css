@@ -43,6 +43,6 @@ table{
 
 @font-face {
     font-family: blinker;
-    src: url("/assets/fonts/Blinker/Blinker-Regular.ttf");
+    src: url("../assets/fonts/Blinker/Blinker-Regular.ttf");
     font-display: fallback;
 }
